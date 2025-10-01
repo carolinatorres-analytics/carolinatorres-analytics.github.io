@@ -1,481 +1,478 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carolina Torres Zapata | Data Analytics & BI Consultant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-medium: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --text-light: #cbd5e1;
+            --text-extra-light: #94a3b8;
+            --text-white: #ffffff;
+            --primary-purple: #8b5cf6;
+            --accent-cyan: #22d3ee;
+            --border-color: rgba(139, 92, 246, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-purple: #7C3AED;
-            --secondary-blue: #1E293B;
-            --dark-blue: #0F172A;
-            --accent-purple: #A78BFA;
-            --accent-cyan: #06B6D4;
-            --text-light: #F1F5F9;
-            --text-white: #FFFFFF;
-            --bg-card: rgba(30, 41, 59, 0.7);
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            background-color: var(--bg-dark);
             color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        .bg-animation {
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-cyan);
-            border-radius: 50%;
-            animation: float-particle 20s infinite;
-        }
-
-        @keyframes float-particle {
-            0%, 100% { transform: translate(0, 0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translate(100px, -100vh); opacity: 0; }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        nav ul {
-            list-style: none;
+        header nav ul {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
+            align-items: center;
+            height: 4rem;
+            list-style: none;
+            gap: 1rem;
         }
 
-        nav a {
+        header nav a {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+            transition: color 0.3s ease;
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        nav a:hover {
+        header nav a:hover {
             color: var(--accent-cyan);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            transition: width 0.3s;
+        header nav a.active {
+            color: var(--accent-cyan);
         }
 
-        nav a:hover::after {
+        header nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
+        }
+        
+        @media (min-width: 640px) {
+            header nav ul {
+                gap: 2rem;
+            }
+            header nav a {
+                font-size: 1rem;
+            }
+        }
+
+        /* Main Content & Sections */
+        main {
+            padding-top: 4rem;
+        }
+
+        section {
+            padding: 6rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Home Section */
+        #home {
+            padding: 0;
+            min-height: 100vh;
             width: 100%;
         }
 
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 6rem 2rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            color: var(--text-white);
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--text-white), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            color: var(--text-white);
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Home Section */
-        #home {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .home-content {
-            flex: 1;
-            min-width: 300px;
+        .home-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            height: 100vh;
         }
 
         .home-image-container {
-            flex: 0 0 auto;
-            position: relative;
+            display: none; /* Hidden on mobile */
+            height: 100%;
+            width: 100%;
         }
-
-        .profile-image {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            border: 5px solid var(--accent-cyan);
-            box-shadow: 0 0 50px rgba(6, 182, 212, 0.5);
-            animation: float 3s ease-in-out infinite;
+        
+        .home-image {
+            height: 100%;
+            width: 100%;
             object-fit: cover;
+            object-position: center;
         }
 
-        .image-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .subtitle {
-            font-size: 1.8rem;
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin: 1.5rem 0 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn i {
-            font-size: 1.2rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            color: var(--text-white);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(6, 182, 212, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(6, 182, 212, 0.1);
-            border: 2px solid var(--accent-cyan);
-            color: var(--text-white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent-cyan);
-            color: var(--dark-blue);
-            transform: translateY(-3px);
-        }
-
-        /* About Section */
-        .about-intro {
-            text-align: center;
-            font-size: 1.15rem;
-            max-width: 900px;
-            margin: 0 auto 4rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s;
+        .home-content {
             position: relative;
+            height: 100%;
+            width: 100%;
+            background-color: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
             overflow: hidden;
         }
+        
+        @media (min-width: 768px) {
+            .home-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .home-image-container {
+                display: block;
+            }
+            .home-content {
+                padding: 4rem;
+            }
+        }
+        
+        .home-content h1 {
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+        }
 
-        .card::before {
+        .home-content .subtitle {
+            margin-top: 1rem;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .home-description {
+            margin-top: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.125rem);
+            color: var(--text-light);
+            max-width: 60ch;
+        }
+        
+        .home-buttons {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+             .home-buttons {
+                flex-direction: row;
+             }
+        }
+        
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+             transform: scale(1.05);
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: #6b21a8; /* purple-800 */
+            box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+        }
+        .btn-primary:hover {
+             background-color: #f3e8ff; /* purple-100 */
+        }
+        
+        .btn-secondary {
+            background-color: rgba(139, 92, 246, 0.4);
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.8);
+        }
+        .btn-secondary:hover {
+            background-color: rgba(139, 92, 246, 0.6);
+        }
+        
+        .chart-icon-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: auto;
+            color: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+        }
+
+
+        /* Common Components */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-white);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title h2::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 66.66%;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
+            border-radius: 2px;
         }
-
+        
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1);
             border-color: var(--accent-cyan);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
         }
-
-        .card-icon {
-            font-size: 3rem;
+        
+        /* About Section */
+        #about .intro {
+            text-align: center;
+            font-size: 1.125rem;
+            max-width: 56rem;
+            margin: 0 auto 4rem;
+            color: var(--text-extra-light);
+        }
+        
+        #about .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            #about .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        #about .card .icon {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
+        
+        #about .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+        }
+        
         /* Skills Section */
-        .skills-container {
+        #skills .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
         }
-
-        .skill-category {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s;
+        
+        @media (min-width: 1024px) {
+            #skills .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
-
-        .skill-category:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        
+        #skills .card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 2rem;
         }
-
-        .skill-category h3 {
+        
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .skill-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-name {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .skill-item {
-            margin: 1.5rem 0;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
+            font-weight: 600;
             color: var(--text-white);
-            font-weight: 500;
         }
-
-        .skill-bar {
-            background: rgba(255, 255, 255, 0.1);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-progress {
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
-        }
-
-        .project-icon {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 2.5rem;
-            opacity: 0.2;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(6, 182, 212, 0.3));
-            padding: 2rem;
-            position: relative;
-        }
-
-        .project-body {
-            padding: 2rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 1.5rem 0;
-        }
-
-        .tag {
-            background: rgba(124, 58, 237, 0.2);
-            border: 1px solid rgba(124, 58, 237, 0.5);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-white);
-            transition: all 0.3s;
-        }
-
-        .tag:hover {
-            background: rgba(6, 182, 212, 0.3);
-            border-color: var(--accent-cyan);
-        }
-
-        .impact {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(6, 182, 212, 0.1);
-            border-left: 3px solid var(--accent-cyan);
-            border-radius: 5px;
-        }
-
-        .impact strong {
+        
+        .skill-percentage {
+            font-size: 0.875rem;
+            font-family: monospace;
             color: var(--accent-cyan);
         }
-
+        
+        .skill-bar-bg {
+            width: 100%;
+            background-color: var(--bg-medium);
+            border-radius: 9999px;
+            height: 0.625rem;
+        }
+        
+        .skill-bar-progress {
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 1s ease-out;
+            width: 0;
+        }
+        
+        /* Projects Section */
+        #projects .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            #projects .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            #projects .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .project-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+            border-color: var(--primary-purple);
+        }
+        
+        .project-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(34, 211, 238, 0.1));
+            position: relative;
+        }
+        
+        .project-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+        
+        .project-header .icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2.5rem;
+            opacity: 0.1;
+            color: var(--accent-cyan);
+        }
+        
+        .project-body {
+            padding: 1.5rem;
+        }
+        
+        .project-body p {
+             min-height: 6rem;
+             color: var(--text-extra-light);
+             margin-bottom: 1rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tag {
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd; /* purple-300 */
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        
+        .project-impact {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: rgba(34, 211, 238, 0.1);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 0 0.25rem 0.25rem 0;
+            font-size: 0.875rem;
+            color: #a5f3fc; /* cyan-200 */
+        }
+        
         /* Education Section */
         .timeline {
             position: relative;
-            padding: 2rem 0 2rem 3rem;
+            padding-left: 2.5rem;
         }
-
-        .timeline::before {
-            content: '';
+        
+        .timeline-line {
             position: absolute;
             left: 0;
             top: 0;
@@ -483,781 +480,567 @@
             width: 2px;
             background: linear-gradient(180deg, var(--primary-purple), var(--accent-cyan));
         }
-
+        
         .timeline-item {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
             position: relative;
-            transition: all 0.3s;
+            margin-bottom: 3rem;
         }
-
-        .timeline-item:hover {
-            border-color: var(--accent-cyan);
-            transform: translateX(10px);
+        .timeline-item:last-child {
+             margin-bottom: 0;
         }
-
-        .timeline-item::before {
-            content: '';
+        
+        .timeline-dot {
             position: absolute;
             left: -3.5rem;
-            top: 2rem;
-            width: 20px;
-            height: 20px;
-            background: var(--accent-cyan);
-            border: 3px solid var(--dark-blue);
+            top: 0.375rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--accent-cyan);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            border: 4px solid var(--bg-dark);
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
 
-        .timeline-icon {
+        .timeline-item .card .icon {
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-cyan);
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .cert-item {
-            background: var(--bg-card);
-            border-left: 4px solid var(--primary-purple);
-            padding: 1.5rem;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .cert-item:hover {
-            border-left-color: var(--accent-cyan);
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.2);
-        }
-
-        .cert-icon {
-            font-size: 1.5rem;
             color: var(--accent-cyan);
             margin-bottom: 0.5rem;
         }
-
-        /* Contact Section */
-        #contact {
+        .timeline-item .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+        .timeline-item .card .details {
+            font-weight: 600;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-white);
             text-align: center;
+            margin-top: 6rem;
+            margin-bottom: 3rem;
         }
-
-        .contact-intro {
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            color: var(--text-light);
-        }
-
-        .contact-grid {
+        
+        .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .cert-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        .cert-item {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid transparent;
+            border-left: 4px solid var(--primary-purple);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-item:hover {
+             background-color: var(--bg-medium);
+             border-color: var(--border-color);
+             transform: scale(1.05);
+        }
+        
+        .cert-item .title { font-weight: 700; color: var(--text-white); }
+        .cert-item .issuer { font-size: 0.875rem; color: var(--accent-cyan); }
+        
+        /* Contact Section */
+        #contact { text-align: center; }
+        #contact .intro {
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto 3rem;
+            color: var(--text-extra-light);
+        }
+        
+        #contact .grid {
+            display: grid;
             gap: 2rem;
-            margin: 3rem 0;
+            max-width: 56rem;
+            margin: 0 auto 4rem;
         }
-
-        .contact-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s;
+        
+        @media (min-width: 640px) {
+            #contact .grid { grid-template-columns: repeat(3, 1fr); }
         }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+        
+        #contact .card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
             background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .contact-card h3 {
-            margin-bottom: 1rem;
+        
+        #contact .card h3 {
+             font-size: 1.25rem;
+             font-weight: 700;
+             color: var(--text-white);
+             margin-bottom: 0.5rem;
         }
-
-        .contact-card a {
+        
+        #contact .card a {
             color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
-
-        .contact-card a:hover {
+        #contact .card a:hover {
             color: var(--accent-cyan);
         }
-
+        
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
         }
-
+        
         .social-btn {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: var(--bg-card);
+            width: 4rem;
+            height: 4rem;
+            background-color: rgba(30, 41, 59, 0.5);
             border: 2px solid var(--primary-purple);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
             color: var(--text-white);
+            font-size: 1.5rem;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-
+        
         .social-btn:hover {
             background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
             border-color: var(--accent-cyan);
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+            transform: scale(1.1) rotate(6deg);
         }
-
+        
         /* Footer */
         footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.4);
+            background-color: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid var(--border-color);
             margin-top: 4rem;
-            border-top: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 2rem 1rem;
+            text-align: center;
+            color: var(--text-extra-light);
         }
-
-        footer p {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        footer .name {
+            font-weight: 700;
+            color: var(--text-white);
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            #home { 
-                flex-direction: column-reverse; 
-                text-align: center;
-            }
-            .profile-image { 
-                width: 280px; 
-                height: 280px; 
-            }
-            .image-glow {
-                width: 320px;
-                height: 320px;
-            }
-            nav ul { gap: 1rem; }
-            .timeline { padding-left: 2rem; }
-            .cta-buttons { justify-content: center; }
+        footer .title {
+            font-size: 0.875rem;
         }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Loading animation for skills */
-        .skill-progress[data-width] {
-            width: 0;
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+        footer .copy {
+            font-size: 0.75rem;
+            margin-top: 1rem;
+            opacity: 0.7;
         }
     </style>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation" id="particles"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="#about"><i class="fas fa-user"></i> Sobre Mí</a></li>
-            <li><a href="#skills"><i class="fas fa-code"></i> Habilidades</a></li>
-            <li><a href="#projects"><i class="fas fa-project-diagram"></i> Proyectos</a></li>
-            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Educación</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#education">Educación</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="home-content fade-in">
-            <h1>Carolina Torres Zapata</h1>
-            <p class="subtitle">
-                <i class="fas fa-chart-line"></i> Consultora Líder de Analítica | Data Science & BI
-            </p>
-            <p class="tagline">
-                Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia 
-                en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento 
-                a través de soluciones analíticas innovadoras.
-            </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Contáctame
-                </a>
-                <a href="#projects" class="btn btn-secondary">
-                    <i class="fas fa-folder-open"></i> Ver Proyectos
-                </a>
-            </div>
-        </div>
-        <div class="home-image-container fade-in">
-            <div class="image-glow"></div>
-            <img src="Images/Foto.jpg" alt="Carolina Torres Zapata" class="profile-image">
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2><i class="fas fa-user-circle"></i> Sobre Mí</h2>
-        <p class="about-intro">
-            Ingeniera Industrial y Especialista en Analítica con una sólida trayectoria liderando proyectos de Business Intelligence, 
-            Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es 
-            convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
-        </p>
-        
-        <div class="about-grid">
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-briefcase"></i>
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <div class="home-grid">
+                <div class="home-image-container">
+                    <img src="Images/Foto.jpg" 
+                         alt="Data Analytics Professional" 
+                         class="home-image">
                 </div>
-                <h3>Experiencia Profesional</h3>
-                <p>
-                    He liderado proyectos de alto impacto en empresas como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. 
-                    Mi experiencia abarca desde la implementación de dashboards ejecutivos hasta el desarrollo de modelos 
-                    de Machine Learning para optimización de procesos, pronóstico de demanda y análisis predictivo.
-                </p>
+                <div class="home-content">
+                    <svg class="chart-icon-overlay" viewBox="0 0 400 150" preserveAspectRatio="xMidYMax meet">
+                        <path d="M50 130 L100 80 L150 100 L200 60 L250 80 L300 40 L350 70" fill="none" stroke="currentColor" stroke-width="2" stroke-opacity="0.5"/>
+                        <path d="M50 130 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.3"/>
+                        <path d="M100 80 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.4"/>
+                        <path d="M150 100 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.3"/>
+                        <path d="M200 60 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.6"/>
+                        <path d="M250 80 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.4"/>
+                        <path d="M300 40 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.7"/>
+                        <path d="M350 70 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.5"/>
+                    </svg>
+                    <div style="position: relative; z-index: 10;">
+                        <h1>Carolina Torres Zapata</h1>
+                        <p class="subtitle">Consultora Líder de Analítica | Data Science & BI</p>
+                        <p class="home-description">
+                            Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento a través de soluciones analíticas innovadoras.
+                        </p>
+                        <div class="home-buttons">
+                            <a href="#projects" class="btn btn-primary">Mis proyectos</a>
+                            <a href="#contact" class="btn btn-secondary">Contáctame</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about">
+                <div class="section-title"><h2>Sobre Mí</h2></div>
+                <p class="intro">
+                    Ingeniera Industrial y Especialista en Analítica con una sólida trayectoria liderando proyectos de Business Intelligence, Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
+                </p>
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Experiencia Profesional</h3>
+                        <p>He liderado proyectos de alto impacto en empresas como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. Mi experiencia abarca desde la implementación de dashboards ejecutivos hasta el desarrollo de modelos de Machine Learning para optimización de procesos, pronóstico de demanda y análisis predictivo.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Expertise Técnico</h3>
+                        <p>Dominio avanzado en <strong>Python, R, SQL, Power BI y Qlik Cloud</strong>. Especializada en Machine Learning (Random Forest, XGBoost, clustering), automatización de procesos y desarrollo de soluciones analíticas que generan valor medible para el negocio.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h3>Liderazgo y Mentoría</h3>
+                        <p>Reconocida por mi capacidad de liderar equipos multidisciplinarios, comunicar insights complejos a nivel ejecutivo y formar talento en herramientas analíticas. Experiencia como docente en análisis de datos y <strong>storytelling efectivo</strong> con datos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <div class="section-title"><h2>Habilidades</h2></div>
+                <div class="grid">
+                    <div class="card">
+                        <h3><i class="fas fa-robot"></i> Ciencia de Datos & ML</h3>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fab fa-python"></i> Python</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-database"></i> SQL</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fab fa-r-project"></i> R</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-brain"></i> Machine Learning</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-chart-bar"></i> BI & Visualización</h3>
+                         <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-chart-pie"></i> Power BI</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-chart-area"></i> Qlik Cloud</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-chart-line"></i> Dash & Plotly</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-file-excel"></i> Excel Avanzado</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="92"></div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-handshake"></i> Soft Skills</h3>
+                         <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-user-tie"></i> Liderazgo Técnico</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-comments"></i> Storytelling con Datos</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-tasks"></i> Gestión de Proyectos</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-bar-header">
+                                <span class="skill-name"><i class="fas fa-chalkboard-teacher"></i> Mentoría</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-laptop-code"></i>
+            <!-- Projects Section -->
+            <section id="projects">
+                <div class="section-title"><h2>Proyectos Destacados</h2></div>
+                <div class="grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Dashboards Ejecutivos - PRIMO</h3>
+                            <div class="icon"><i class="fas fa-chart-pie"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Gestión de más de 50 dashboards interactivos en Power BI para decisiones estratégicas en ventas, costos y desempeño operativo.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Power BI</span><span class="project-tag">DAX</span><span class="project-tag">Power Query</span><span class="project-tag">SQL</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Facilitación de decisiones estratégicas a nivel ejecutivo con visualizaciones en tiempo real.</div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Modelos Predictivos - Machine Learning</h3>
+                             <div class="icon"><i class="fas fa-brain"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Implementación de modelos predictivos con regresión logística, Random Forest y clustering para análisis de comportamiento de clientes.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">Pandas</span><span class="project-tag">Random Forest</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Insights clave sobre segmentación y comportamiento de clientes, mejorando estrategias comerciales.</div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Clasificación de Noticias - NLP</h3>
+                             <div class="icon"><i class="fas fa-language"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Modelo de clasificación utilizando Procesamiento de Lenguaje Natural y Machine Learning, especializado en delitos financieros.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span><span class="project-tag">NLP</span><span class="project-tag">ML</span><span class="project-tag">AWS</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Automatización en detección de delitos financieros con precisión superior al 85%.</div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Migración Data Warehouse - Banistmo</h3>
+                             <div class="icon"><i class="fas fa-database"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Lideré la migración técnica del Data Warehouse a SQL Impala Cloudera, incluyendo rediseño de modelos PTF para productos bancarios.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">SQL</span><span class="project-tag">Cloudera</span><span class="project-tag">SAS</span><span class="project-tag">Spark</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Modernización de infraestructura analítica bancaria con mejora del 40% en velocidad de procesamiento.</div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Automatización de Reportes</h3>
+                             <div class="icon"><i class="fas fa-cogs"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Automatización de procesos recurrentes mediante Python y VBA, reduciendo significativamente tiempos operativos.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span><span class="project-tag">VBA</span><span class="project-tag">Excel</span><span class="project-tag">ETL</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Reducción del 30% en tiempos operativos, liberando 5 horas semanales por analista.</div>
+                        </div>
+                    </div>
+                     <div class="project-card">
+                        <div class="project-header">
+                            <h3>Forecast Contact Center - Avianca</h3>
+                             <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        </div>
+                        <div class="project-body">
+                            <p>Rediseño y optimización del modelo de pronóstico de llamadas utilizando series de tiempo en R y Python.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">R</span><span class="project-tag">Python</span><span class="project-tag">Time Series</span><span class="project-tag">Forecasting</span>
+                            </div>
+                            <div class="project-impact"><strong>Impacto:</strong> Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos.</div>
+                        </div>
+                    </div>
                 </div>
-                <h3>Expertise Técnico</h3>
-                <p>
-                    Dominio avanzado en <strong>Python, R, SQL, Power BI y Qlik Cloud</strong>. Especializada en Machine Learning 
-                    (Random Forest, XGBoost, clustering), automatización de procesos y desarrollo de soluciones analíticas 
-                    que generan valor medible para el negocio.
-                </p>
-            </div>
+            </section>
             
-            <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-users"></i>
+            <!-- Education Section -->
+            <section id="education">
+                <div class="section-title"><h2>Educación y Certificaciones</h2></div>
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card">
+                            <div class="icon"><i class="fas fa-university"></i></div>
+                            <h3>Ingeniera Industrial</h3>
+                            <p class="details">Universidad de Antioquia | 2017</p>
+                            <p>Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en mejora continua y análisis de datos para la toma de decisiones.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="card">
+                            <div class="icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Especialista en Analítica de Datos</h3>
+                            <p class="details">Universidad de Antioquia</p>
+                            <p>Especialización enfocada en técnicas avanzadas de análisis de datos, modelado estadístico, Business Intelligence y desarrollo de soluciones analíticas para la industria.</p>
+                        </div>
+                    </div>
                 </div>
-                <h3>Liderazgo y Mentoría</h3>
-                <p>
-                    Reconocida por mi capacidad de liderar equipos multidisciplinarios, comunicar insights complejos 
-                    a nivel ejecutivo y formar talento en herramientas analíticas. Experiencia como docente en 
-                    análisis de datos y <strong>storytelling efectivo</strong> con datos.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2><i class="fas fa-cogs"></i> Habilidades</h2>
-        
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-robot"></i> Ciencia de Datos & ML</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fab fa-python"></i> Python</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95" style="width: 95%"></div>
-                    </div>
+                <h3 class="section-subtitle">Certificaciones Profesionales</h3>
+                <div class="cert-grid">
+                    <div class="cert-item"><p class="title">Data Science for All</p><p class="issuer">MinTIC | 2022</p></div>
+                    <div class="cert-item"><p class="title">Machine Learning in Python</p><p class="issuer">University of Michigan - Coursera | 2020</p></div>
+                    <div class="cert-item"><p class="title">Data Analysis and Machine Learning</p><p class="issuer">University of Michigan - Coursera | 2019</p></div>
+                    <div class="cert-item"><p class="title">Introduction to Data Science</p><p class="issuer">University of Michigan - Coursera | 2022</p></div>
+                    <div class="cert-item"><p class="title">Basic Python</p><p class="issuer">Platzi | 2022</p></div>
+                    <div class="cert-item"><p class="title">Statistics Introduction with R</p><p class="issuer">Universidad de Antioquia | 2018</p></div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-database"></i> SQL</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fab fa-r-project"></i> R</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-brain"></i> Machine Learning</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90" style="width: 90%"></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="skill-category">
-                <h3><i class="fas fa-chart-bar"></i> BI & Visualización</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-chart-pie"></i> Power BI</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95" style="width: 95%"></div>
+                <h3 class="section-subtitle">Experiencia Docente</h3>
+                 <div style="max-width: 48rem; margin: 0 auto;">
+                    <div class="card">
+                        <div class="icon" style="font-size: 2.5rem;"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>Profesor de Cátedra - CESDE</h3>
+                        <p class="details">CESDE | 2021 - 2022</p>
+                        <p>Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.</p>
                     </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-chart-area"></i> Qlik Cloud</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-chart-line"></i> Dash & Plotly</span>
-                        <span>88%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="88" style="width: 88%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-file-excel"></i> Excel Avanzado</span>
-                        <span>92%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="92" style="width: 92%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3><i class="fas fa-handshake"></i> Soft Skills</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-user-tie"></i> Liderazgo Técnico</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-comments"></i> Storytelling con Datos</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95" style="width: 95%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-tasks"></i> Gestión de Proyectos</span>
-                        <span>88%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="88" style="width: 88%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span><i class="fas fa-chalkboard-teacher"></i> Mentoría</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90" style="width: 90%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2><i class="fas fa-project-diagram"></i> Proyectos Destacados</h2>
-        
-        <div class="projects-grid">
-            <div class="project-card">
-                <i class="fas fa-chart-pie project-icon"></i>
-                <div class="project-header">
-                    <h3>Dashboards Ejecutivos - PRIMO</h3>
-                </div>
-                <div class="project-body">
-                    <p>Gestión de más de 50 dashboards interactivos en Power BI para decisiones estratégicas en ventas, costos y desempeño operativo.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fas fa-chart-bar"></i> Power BI</span>
-                        <span class="tag"><i class="fas fa-function"></i> DAX</span>
-                        <span class="tag"><i class="fas fa-filter"></i> Power Query</span>
-                        <span class="tag"><i class="fas fa-database"></i> SQL</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Facilitación de decisiones estratégicas a nivel ejecutivo con visualizaciones en tiempo real
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <i class="fas fa-brain project-icon"></i>
-                <div class="project-header">
-                    <h3>Modelos Predictivos - Machine Learning</h3>
-                </div>
-                <div class="project-body">
-                    <p>Implementación de modelos predictivos con regresión logística, Random Forest y clustering para análisis de comportamiento de clientes.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tag"><i class="fas fa-robot"></i> Scikit-learn</span>
-                        <span class="tag"><i class="fas fa-table"></i> Pandas</span>
-                        <span class="tag"><i class="fas fa-tree"></i> Random Forest</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Insights clave sobre segmentación y comportamiento de clientes, mejorando estrategias comerciales
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <i class="fas fa-language project-icon"></i>
-                <div class="project-header">
-                    <h3>Clasificación de Noticias - NLP</h3>
-                </div>
-                <div class="project-body">
-                    <p>Modelo de clasificación utilizando Procesamiento de Lenguaje Natural y Machine Learning, especializado en delitos financieros.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tag"><i class="fas fa-comment-dots"></i> NLP</span>
-                        <span class="tag"><i class="fas fa-brain"></i> ML</span>
-                        <span class="tag"><i class="fab fa-aws"></i> AWS</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Automatización en detección de delitos financieros con precisión superior al 85%
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <i class="fas fa-database project-icon"></i>
-                <div class="project-header">
-                    <h3>Migración Data Warehouse - Banistmo</h3>
-                </div>
-                <div class="project-body">
-                    <p>Lideré la migración técnica del Data Warehouse a SQL Impala Cloudera, incluyendo rediseño de modelos PTF para productos bancarios.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fas fa-database"></i> SQL</span>
-                        <span class="tag"><i class="fas fa-cloud"></i> Cloudera</span>
-                        <span class="tag"><i class="fas fa-code"></i> SAS</span>
-                        <span class="tag"><i class="fas fa-fire"></i> Spark</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Modernización de infraestructura analítica bancaria con mejora del 40% en velocidad de procesamiento
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <i class="fas fa-cogs project-icon"></i>
-                <div class="project-header">
-                    <h3>Automatización de Reportes</h3>
-                </div>
-                <div class="project-body">
-                    <p>Automatización de procesos recurrentes mediante Python y VBA, reduciendo significativamente tiempos operativos.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tag"><i class="fas fa-file-code"></i> VBA</span>
-                        <span class="tag"><i class="fas fa-file-excel"></i> Excel</span>
-                        <span class="tag"><i class="fas fa-exchange-alt"></i> ETL</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Reducción del 30% en tiempos operativos, liberando 5 horas semanales por analista
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <i class="fas fa-chart-line project-icon"></i>
-                <div class="project-header">
-                    <h3>Forecast Contact Center - Avianca</h3>
-                </div>
-                <div class="project-body">
-                    <p>Rediseño y optimización del modelo de pronóstico de llamadas utilizando series de tiempo en R y Python.</p>
-                    <div class="tech-tags">
-                        <span class="tag"><i class="fab fa-r-project"></i> R</span>
-                        <span class="tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tag"><i class="fas fa-clock"></i> Time Series</span>
-                        <span class="tag"><i class="fas fa-chart-area"></i> Forecasting</span>
-                    </div>
-                    <div class="impact">
-                        <strong><i class="fas fa-bullseye"></i> Impacto:</strong> Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <h2><i class="fas fa-graduation-cap"></i> Educación y Certificaciones</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-icon"><i class="fas fa-university"></i></div>
-                <h3>Ingeniera Industrial</h3>
-                <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">
-                    <i class="fas fa-map-marker-alt"></i> Universidad de Antioquia | 2017
-                </p>
-                <p>
-                    Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en 
-                    mejora continua y análisis de datos para la toma de decisiones.
-                </p>
-            </div>
+            </section>
             
-            <div class="timeline-item">
-                <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Especialista en Analítica de Datos</h3>
-                <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">
-                    <i class="fas fa-map-marker-alt"></i> Universidad de Antioquia
+            <!-- Contact Section -->
+            <section id="contact">
+                <div class="section-title"><h2>Contacto</h2></div>
+                <p class="intro">
+                    ¿Interesado en colaborar? ¡Hablemos sobre cómo puedo aportar valor a tu proyecto u organización!
                 </p>
-                <p>
-                    Especialización enfocada en técnicas avanzadas de análisis de datos, modelado estadístico, 
-                    Business Intelligence y desarrollo de soluciones analíticas para la industria.
-                </p>
-            </div>
-        </div>
-
-        <h3 style="margin: 4rem 0 2rem; text-align: center; font-size: 2rem;">
-            <i class="fas fa-certificate"></i> Certificaciones Profesionales
-        </h3>
-        <div class="cert-grid">
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Data Science for All</strong>
-                <p style="color: var(--accent-cyan);">MinTIC | 2022</p>
-            </div>
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Machine Learning in Python</strong>
-                <p style="color: var(--accent-cyan);">University of Michigan - Coursera | 2020</p>
-            </div>
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Data Analysis and Machine Learning</strong>
-                <p style="color: var(--accent-cyan);">University of Michigan - Coursera | 2019</p>
-            </div>
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Introduction to Data Science</strong>
-                <p style="color: var(--accent-cyan);">University of Michigan - Coursera | 2022</p>
-            </div>
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Basic Python</strong>
-                <p style="color: var(--accent-cyan);">Platzi | 2022</p>
-            </div>
-            <div class="cert-item">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <strong>Statistics Introduction with R</strong>
-                <p style="color: var(--accent-cyan);">Universidad de Antioquia | 2018</p>
-            </div>
-        </div>
-
-        <h3 style="margin: 4rem 0 2rem; text-align: center; font-size: 2rem;">
-            <i class="fas fa-chalkboard-teacher"></i> Experiencia Docente
-        </h3>
-        <div class="card" style="max-width: 700px; margin: 0 auto;">
-            <div class="card-icon">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h3>Profesor de Cátedra - CESDE</h3>
-            <p style="color: var(--accent-cyan); margin-bottom: 1rem; font-weight: 600;">
-                <i class="fas fa-calendar-alt"></i> 2021 - 2022
-            </p>
-            <p>
-                Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, 
-                mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.
-            </p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2><i class="fas fa-envelope"></i> Contacto</h2>
-        <p class="contact-intro">
-            ¿Interesado en colaborar? ¡Hablemos sobre cómo puedo aportar valor a tu proyecto u organización!
-        </p>
-        
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
+                <div class="grid">
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Email</h3>
+                        <a href="mailto:carolina.torresz@udea.edu.co">carolina.torresz@udea.edu.co</a>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-phone"></i></div>
+                        <h3>Teléfono</h3>
+                        <a href="tel:+573165352099">+57 316 535 2099</a>
+                    </div>
+                    <div class="card">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>Ubicación</h3>
+                        <p>Envigado, Antioquia, Colombia</p>
+                    </div>
                 </div>
-                <h3>Email</h3>
-                <a href="mailto:carolina.torresz@udea.edu.co">carolina.torresz@udea.edu.co</a>
-            </div>
-            
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/carolinatorresz/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/carolinatorresz" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-btn"><i class="fab fa-github"></i></a>
+                    <a href="mailto:carolina.torresz@udea.edu.co" title="Email" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/573165352099" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="social-btn"><i class="fab fa-whatsapp"></i></a>
                 </div>
-                <h3>Teléfono</h3>
-                <a href="tel:+573165352099">+57 316 535 2099</a>
-            </div>
-            
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h3>Ubicación</h3>
-                <p>Envigado, Antioquia<br>Colombia</p>
-            </div>
+            </section>
         </div>
-
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/carolinatorresz/" target="_blank" class="social-btn" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/carolinatorresz" target="_blank" class="social-btn" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:carolina.torresz@udea.edu.co" class="social-btn" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://wa.me/573165352099" target="_blank" class="social-btn" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <p>
-            <strong>Carolina Torres Zapata</strong> | Consultora Líder de Analítica | Data Science & BI
-        </p>
-        <p style="margin-top: 1rem; opacity: 0.7;">
-            © 2025 Todos los derechos reservados
-        </p>
+        <p class="name">Carolina Torres Zapata</p>
+        <p class="title">Consultora Líder de Analítica | Data Science & BI</p>
+        <p class="copy">&copy; 2024 Todos los derechos reservados</p>
     </footer>
 
     <script>
-        // Particle animation
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
-
-        // Smooth scroll animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(section);
-        });
-
-        // Animate skill bars on scroll
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progress = entry.target;
-                    const width = progress.getAttribute('data-width');
-                    setTimeout(() => {
-                        progress.style.width = width + '%';
-                    }, 200);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.skill-progress').forEach(skill => {
-            skill.style.width = '0';
-            skillObserver.observe(skill);
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Skill Bar Animation ---
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = width + '%';
+                        skillObserver.unobserve(bar);
+                    }
                 });
-            });
-        });
+            }, { threshold: 0.5 });
 
-        // Active nav link on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+            document.querySelectorAll('.skill-bar-progress').forEach(skill => {
+                skillObserver.observe(skill);
             });
 
-            document.querySelectorAll('nav a').forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.style.color = 'var(--accent-cyan)';
-                }
-            });
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('header nav a');
+
+            window.addEventListener('scroll', () => {
+                let current = 'home';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }, { passive: true });
         });
     </script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
