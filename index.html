@@ -1,1153 +1,497 @@
 <!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carolina Torres Zapata | Data Analytics & BI Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Segoe+UI&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        :root {
-            --bg-dark: #0f172a;
-            --bg-medium: #1e293b;
-            --bg-card: rgba(30, 41, 59, 0.7);
-            --text-light: #cbd5e1;
-            --text-extra-light: #94a3b8;
-            --text-white: #ffffff;
-            --primary-purple: #8b5cf6;
-            --accent-cyan: #22d3ee;
-            --border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: #0f172a;
+            color: #cbd5e1;
         }
-
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5, h6, .font-poppins {
             font-family: 'Poppins', sans-serif;
-        }
-        .home-text .subtitle, .cert-item .title, footer .name {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        header nav ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 4rem;
-            list-style: none;
-            gap: 1rem;
-        }
-
-        header nav a {
-            padding: 0.5rem 0.75rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        header nav a:hover {
-            color: var(--accent-cyan);
-        }
-
-        header nav a.active {
-            color: var(--accent-cyan);
-        }
-
-        header nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-        }
-        
-        @media (min-width: 640px) {
-            header nav ul {
-                gap: 2rem;
-            }
-            header nav a {
-                font-size: 1rem;
-            }
-        }
-
-        /* Main Content & Sections */
-        main {
-            padding-top: 4rem;
-        }
-
-        section {
-            padding: 2.5rem 1rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Home Section */
-        #home {
-            display: flex;
-            align-items: center;
-            min-height: calc(100vh - 4rem);
-            width: 100%;
-        }
-
-        .home-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            align-items: center;
-            gap: 3rem;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 992px) {
-            .home-container {
-                grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-                gap: 4rem;
-            }
-        }
-        
-        .home-text {
-             text-align: center;
-        }
-        @media (min-width: 992px) {
-            .home-text {
-                text-align: left;
-            }
-        }
-
-        .home-text h1 {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            font-weight: 800;
-            color: var(--text-white);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .home-text h1 span {
-            color: var(--accent-cyan);
-        }
-
-        .home-text .subtitle {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-bottom: 1.5rem;
-        }
-
-        .home-text .home-description {
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            color: var(--text-light);
-            max-width: 65ch;
-            margin: 0 auto 2.5rem;
-        }
-        
-        @media (min-width: 992px) {
-            .home-text .home-description {
-                 margin: 0 0 2.5rem;
-            }
-        }
-        
-        .home-buttons {
-            margin-top: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        @media (min-width: 640px) {
-             .home-buttons {
-                flex-direction: row;
-                justify-content: center;
-             }
-        }
-        @media (min-width: 992px) {
-            .home-buttons {
-                justify-content: flex-start;
-            }
-        }
-        
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .btn:hover {
-             transform: scale(1.05);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            color: var(--text-white);
-            border: none;
-            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
-        }
-        .btn-primary:hover {
-            box-shadow: 0 6px 25px rgba(34, 211, 238, 0.4);
-            background: linear-gradient(90deg, #9c7cf8, #37e0f5);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--accent-cyan);
-            border: 2px solid var(--accent-cyan);
-        }
-        .btn-secondary:hover {
-            background-color: rgba(34, 211, 238, 0.1);
-            color: var(--text-white);
-        }
-        
-        .home-photo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            order: -1;
-        }
-
-        @media (min-width: 992px) {
-            .home-photo {
-                order: 1;
-            }
-        }
-
-        .photo-wrapper {
-            position: relative;
-            width: clamp(300px, 80vw, 460px);
-            height: clamp(300px, 80vw, 460px);
-            border-radius: 50%;
-            padding: 5px; /* Controls border thickness */
-            background: linear-gradient(45deg, var(--accent-cyan), #0ea5e9);
-        }
-
-        .photo-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 50%;
-            border: 3px solid var(--bg-dark); /* Inner border for separation */
-            box-shadow: inset 0 0 10px 0 rgba(15, 23, 42, 0.5);
-        }
-
-
-        /* Common Components */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            font-weight: 800;
-            color: var(--text-white);
-            display: inline-block;
-            position: relative;
-            padding-bottom: 0.75rem;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 66.66%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            border-radius: 2px;
-        }
-        
-        .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1);
-            border-color: var(--accent-cyan);
-        }
-        
-        /* About Section */
-        #about .intro {
-            text-align: center;
-            font-size: 1.125rem;
-            max-width: 56rem;
-            margin: 0 auto 4rem;
-            color: var(--text-extra-light);
-        }
-        
-        #about .grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            #about .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        #about .card h3 {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 1rem;
-        }
-
-        #about .card h3 i {
-            color: var(--primary-purple);
-            font-size: 2rem;
-            flex-shrink: 0;
-        }
-        
-        /* Skills Section */
-        #skills .grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            #skills .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        #skills .card h3 {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 2rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .skill-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .skill-list .icon {
-            font-size: 1.25rem;
-            color: var(--primary-purple);
-            margin-top: 0.25rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .skill-list .text h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-white);
-            margin-bottom: 0.25rem;
-        }
-
-        .skill-list .text p {
-            color: var(--text-extra-light);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .tools-category {
-            margin-bottom: 2rem;
-        }
-        .tools-category:last-child {
-            margin-bottom: 0;
-        }
-
-        .tools-category h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .tools-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 1.5rem;
-            color: var(--text-extra-light);
-            font-size: 0.9rem;
-        }
-
-        .tools-list span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: rgba(30, 41, 59, 0.8);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            border: 1px solid var(--border-color);
-        }
-        .tools-list span i {
-            color: var(--primary-purple);
-        }
-        
-        /* Projects Section */
-        #projects .grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            #projects .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1024px) {
-            #projects .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        .project-card {
-            background-color: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
-            border-color: var(--primary-purple);
-        }
-        
-        .project-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(34, 211, 238, 0.1));
-            position: relative;
-            min-height: 8rem; /* Set a minimum height to unify card headers */
-            display: flex;
-            align-items: center; /* Vertically center content */
-        }
-        
-        .project-header h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-white);
-            padding-right: 3.5rem;
-        }
-        
-        .project-header .icon {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2.5rem;
-            opacity: 0.1;
-            color: var(--accent-cyan);
-        }
-        
-        .project-body {
-            padding: 1.5rem;
-        }
-        
-        .project-body p {
-             min-height: 6rem;
-             color: var(--text-extra-light);
-             margin-bottom: 1rem;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .project-tag {
-            background-color: rgba(139, 92, 246, 0.2);
-            color: #c4b5fd; /* purple-300 */
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-        
-        .project-impact {
-            margin-top: 1rem;
-            padding: 0.75rem;
-            background-color: rgba(34, 211, 238, 0.1);
-            border-left: 4px solid var(--accent-cyan);
-            border-radius: 0 0.25rem 0.25rem 0;
-            font-size: 0.875rem;
-            color: #a5f3fc; /* cyan-200 */
-        }
-        
-        /* Education Section */
-        .timeline {
-            position: relative;
-            padding-left: 2.5rem;
-        }
-        
-        .timeline-line {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(180deg, var(--primary-purple), var(--accent-cyan));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        .timeline-item:last-child {
-             margin-bottom: 0;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -3.5rem;
-            top: 0.375rem;
-            width: 1rem;
-            height: 1rem;
-            background-color: var(--accent-cyan);
-            border-radius: 50%;
-            border: 4px solid var(--bg-dark);
-            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-        }
-
-        .timeline-card-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .timeline-card-content > i.fa-university {
-            font-size: 2rem;
-            color: var(--text-white);
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-        
-        .timeline-item .card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item .card .details {
-            font-weight: 600;
-            color: var(--primary-purple);
-            margin-bottom: 0.5rem;
-        }
-        
-        .section-subtitle {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-white);
-            text-align: center;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .education-card-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        .education-card-content > i {
-            font-size: 2rem;
-            color: var(--text-white);
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-        #teaching-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 0.5rem;
-        }
-        #teaching-card .details {
-            font-weight: 600;
-            color: var(--primary-purple);
-            margin-bottom: 0.5rem;
-        }
-        
-        .cert-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 640px) {
-            .cert-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 1024px) {
-            .cert-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        
-        .cert-item {
-            background-color: rgba(30, 41, 59, 0.5);
-            border: 1px solid transparent;
-            border-left: 4px solid var(--primary-purple);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .cert-item:hover {
-             background-color: var(--bg-medium);
-             border-color: var(--border-color);
-             transform: scale(1.05);
-        }
-        
-        .cert-item .title { font-weight: 700; color: var(--text-white); }
-        .cert-item .issuer { font-size: 0.875rem; color: var(--accent-cyan); }
-        
-        /* Contact Section */
-        #contact { text-align: center; }
-        #contact .intro {
-            font-size: 1.125rem;
-            max-width: 42rem;
-            margin: 0 auto 3rem;
-            color: var(--text-extra-light);
-        }
-        
-        #contact .grid {
-            display: grid;
-            gap: 2rem;
-            max-width: 56rem;
-            margin: 0 auto 4rem;
-        }
-        
-        @media (min-width: 640px) {
-            #contact .grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        
-        #contact .card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        #contact .card h3 {
-             font-size: 1.25rem;
-             font-weight: 700;
-             color: var(--text-white);
-             margin-bottom: 0.5rem;
-        }
-        
-        #contact .card a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        #contact .card a:hover {
-            color: var(--accent-cyan);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        
-        .social-btn {
-            width: 4rem;
-            height: 4rem;
-            background-color: rgba(30, 41, 59, 0.5);
-            border: 2px solid var(--primary-purple);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-white);
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-btn:hover {
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            border-color: var(--accent-cyan);
-            transform: scale(1.1) rotate(6deg);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: rgba(15, 23, 42, 0.5);
-            border-top: 1px solid var(--border-color);
-            margin-top: 4rem;
-            padding: 2rem 1rem;
-            text-align: center;
-            color: var(--text-extra-light);
-        }
-        footer .name {
-            font-weight: 700;
-            color: var(--text-white);
-        }
-        footer .title {
-            font-size: 0.875rem;
-        }
-        footer .copy {
-            font-size: 0.75rem;
-            margin-top: 1rem;
-            opacity: 0.7;
         }
     </style>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
+    <div id="root"></div>
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useRef } from 'react';
+        import ReactDOM from 'react-dom/client';
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="#about"><i class="fas fa-user"></i> Sobre Mí</a></li>
-                <li><a href="#skills"><i class="fas fa-code"></i> Habilidades</a></li>
-                <li><a href="#projects"><i class="fas fa-briefcase"></i> Proyectos</a></li>
-                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Educación</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+        // Components
 
-    <main>
-        <!-- Home Section -->
-        <section id="home">
-            <div class="home-container">
-                <div class="home-text">
-                    <h1>Carolina Torres <span>Zapata</span></h1>
-                    <p class="subtitle"><i class="fas fa-chart-line"></i> Consultora Líder de Analítica | Data Science & BI</p>
-                    <p class="home-description">
-                        Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento a través de soluciones analíticas innovadoras.
-                    </p>
-                    <div class="home-buttons">
-                        <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contáctame</a>
-                        <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> Ver Proyectos</a>
-                    </div>
-                </div>
-                <div class="home-photo">
-                    <div class="photo-wrapper">
-                        <img src="Images/Foto.jpg" alt="Carolina Torres Zapata">
-                    </div>
-                </div>
-            </div>
-        </section>
+        // --- Header.tsx ---
+        const Header = ({ activeSection }) => {
+            const NAV_LINKS = [
+                { href: "#home", label: "Inicio", icon: <i className="fas fa-home"></i> },
+                { href: "#about", label: "Sobre Mí", icon: <i className="fas fa-user"></i> },
+                { href: "#projects", label: "Proyectos", icon: <i className="fas fa-briefcase"></i> },
+                { href: "#contact", label: "Contacto", icon: <i className="fas fa-envelope"></i> },
+            ];
 
-        <div class="container">
-            <!-- About Section -->
-            <section id="about">
-                <div class="section-title"><h2>Sobre Mí</h2></div>
-                <p class="intro">
-                    Ingeniera Industrial con una sólida trayectoria liderando proyectos de Business Intelligence, Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
-                </p>
-                <div class="grid">
-                    <div class="card">
-                        <h3><i class="fas fa-briefcase"></i> Impacto en el Negocio</h3>
-                        <p>He impulsado la transformación de datos en empresas líderes como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. Mi enfoque se centra en convertir los desafíos de negocio en oportunidades, creando soluciones de Machine Learning y BI que optimizan procesos y generan un crecimiento medible.</p>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-laptop-code"></i> Enfoque Técnico End-to-End</h3>
-                        <p>Creo en construir soluciones de datos completas, desde la ingesta con hasta la visualización interactiva. Mi objetivo es entregar no solo un modelo, sino un producto de datos robusto y escalable que genere valor de manera continua para el negocio.</p>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-users"></i> Liderazgo como Puente Estratégico</h3>
-                        <p>Mi rol como líder es ser un traductor: convierto las necesidades del negocio en estrategias técnicas y los complejos resultados analíticos en historias que inspiran acción. Fomento una cultura de curiosidad y mentoría para construir equipos de alto impacto.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills">
-                <div class="section-title"><h2>Habilidades</h2></div>
-                <div class="grid">
-                    <div class="card">
-                        <h3><i class="fas fa-robot"></i> Ciencia de Datos & Machine Learning</h3>
-                        <ul class="skill-list">
-                            <li>
-                                <div class="icon"><i class="fas fa-bullseye"></i></div>
-                                <div class="text">
-                                    <h4>Modelado Predictivo Estratégico</h4>
-                                    <p>Dominio de un amplio espectro de algoritmos (desde Regresiones hasta Gradient Boosting) para construir modelos que anticipan tendencias y optimizan los resultados del negocio.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-users-cog"></i></div>
-                                <div class="text">
-                                    <h4>Segmentación Inteligente de Clientes</h4>
-                                    <p>Aplicación de técnicas de clustering (K-Means, DBSCAN) para descubrir patrones de comportamiento, permitiendo la personalización de estrategias y la identificación de nuevas oportunidades.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-chart-line"></i></div>
-                                <div class="text">
-                                    <h4>Forecasting y Análisis de Series Temporales</h4>
-                                    <p>Desarrollo de modelos de pronóstico precisos para optimizar la planificación de la demanda, la gestión de inventarios y la toma de decisiones financieras.</p>
-                                </div>
-                            </li>
-                             <li>
-                                <div class="icon"><i class="fas fa-cogs"></i></div>
-                                <div class="text">
-                                    <h4>Ingeniería de Datos y Automatización</h4>
-                                    <p>Diseño y despliegue de pipelines de datos robustos y reproducibles en Python, garantizando la eficiencia, calidad y escalabilidad de todo el ciclo analítico.</p>
-                                </div>
-                            </li>
+            return (
+                <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-purple-500/30 shadow-2xl shadow-black/20">
+                    <nav>
+                        <ul className="flex justify-center items-center h-16 list-none gap-2 sm:gap-4 md:gap-8">
+                            {NAV_LINKS.map(link => (
+                                <li key={link.href}>
+                                    <a 
+                                        href={link.href}
+                                        className={`px-2 py-2 text-sm sm:text-base font-medium text-slate-300 hover:text-cyan-400 transition-colors duration-300 relative flex items-center gap-2 ${activeSection === link.href.substring(1) ? 'text-cyan-400' : ''}`}
+                                    >
+                                        {link.icon}
+                                        <span className="hidden sm:inline">{link.label}</span>
+                                        {activeSection === link.href.substring(1) && (
+                                            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400"></span>
+                                        )}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-chart-bar"></i> Business Intelligence & Visualización</h3>
-                         <ul class="skill-list">
-                            <li>
-                                <div class="icon"><i class="fas fa-tachometer-alt"></i></div>
-                                <div class="text">
-                                    <h4>Dashboards Ejecutivos (Power BI & Qlik)</h4>
-                                    <p>Transformación de datos complejos en dashboards intuitivos y visualmente impactantes, diseñados para facilitar la toma de decisiones estratégicas a nivel gerencial.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-drafting-compass"></i></div>
-                                <div class="text">
-                                    <h4>Visualizaciones Interactivas (Dash & Plotly)</h4>
-                                    <p>Creación de aplicaciones analíticas a medida con Python, permitiendo a los usuarios explorar los datos de forma dinámica para descubrir insights por sí mismos.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-file-excel"></i></div>
-                                <div class="text">
-                                    <h4>Excel para Business Intelligence</h4>
-                                    <p>Dominio avanzado de Power Query para la integración y transformación de datos (ETL), y automatización de reportes complejos con macros y tablas dinámicas.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-tools"></i> Lenguajes y Herramientas</h3>
-                        <div class="tools-category">
-                            <h4>Lenguajes de Programación y Análisis</h4>
-                            <div class="tools-list">
-                                <span><i class="fab fa-python"></i> Python</span>
-                                <span><i class="fab fa-r-project"></i> R</span>
-                                <span><i class="fas fa-database"></i> SQL</span>
-                                <span>SAS</span>
-                                <span>DAX</span>
-                                <span>M</span>
-                                <span>VBA</span>
-                            </div>
-                        </div>
-                        <div class="tools-category">
-                            <h4>Plataformas y Entorno</h4>
-                            <div class="tools-list">
-                                <span>Jupyter</span>
-                                <span><i class="fas fa-file-code"></i> VS Code</span>
-                                <span><i class="fab fa-git-alt"></i> Git</span>
-                                <span><i class="fab fa-aws"></i> AWS</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-user-tie"></i> Habilidades Estratégicas y Liderazgo</h3>
-                        <ul class="skill-list">
-                            <li>
-                                <div class="icon"><i class="fas fa-users"></i></div>
-                                <div class="text">
-                                    <h4>Liderazgo Técnico y Mentoría</h4>
-                                    <p>Capacidad para guiar equipos multidisciplinarios, elevar sus capacidades técnicas y fomentar una cultura de datos orientada al alto rendimiento y la innovación.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-book-open"></i></div>
-                                <div class="text">
-                                    <h4>Storytelling con Datos y Comunicación Ejecutiva</h4>
-                                    <p>Habilidad para traducir análisis complejos en narrativas de negocio claras y persuasivas, presentando insights y recomendaciones estratégicas a nivel directivo.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon"><i class="fas fa-tasks"></i></div>
-                                <div class="text">
-                                    <h4>Gestión de Proyectos Analíticos End-to-End</h4>
-                                    <p>Liderazgo de proyectos de datos desde la consultoría inicial y el diseño de la propuesta, hasta la implementación final y la entrega de valor medible para el negocio.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Projects Section -->
-            <section id="projects">
-                <div class="section-title"><h2>Proyectos Destacados</h2></div>
-                <div class="grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Dashboards Ejecutivos</h3>
-                            <div class="icon"><i class="fas fa-chart-pie"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Gestión de más de 50 dashboards interactivos en Power BI para decisiones estratégicas en ventas, costos y desempeño operativo.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fas fa-chart-pie"></i> Power BI</span><span class="project-tag"><i class="fas fa-cogs"></i> DAX</span><span class="project-tag"><i class="fas fa-filter"></i> Power Query</span><span class="project-tag"><i class="fas fa-database"></i> SQL</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Facilitación de decisiones estratégicas a nivel ejecutivo con visualizaciones en tiempo real.</div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Modelos Predictivos - Machine Learning</h3>
-                             <div class="icon"><i class="fas fa-brain"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Implementación de modelos predictivos con regresión logística, Random Forest y clustering para análisis de comportamiento de clientes.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-brain"></i> Scikit-learn</span><span class="project-tag"><i class="fas fa-table"></i> Pandas</span><span class="project-tag"><i class="fas fa-sitemap"></i> Random Forest</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Insights clave sobre segmentación y comportamiento de clientes, mejorando estrategias comerciales.</div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Clasificación de Noticias - NLP</h3>
-                             <div class="icon"><i class="fas fa-language"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Modelo de clasificación utilizando Procesamiento de Lenguaje Natural y Machine Learning, especializado en delitos financieros.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-comment-alt"></i> NLP</span><span class="project-tag"><i class="fas fa-robot"></i> ML</span><span class="project-tag"><i class="fab fa-aws"></i> AWS</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Automatización en detección de delitos financieros con precisión superior al 85%.</div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Migración Data Warehouse</h3>
-                             <div class="icon"><i class="fas fa-database"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Lideré la migración técnica del Data Warehouse a SQL Impala Cloudera, incluyendo rediseño de modelos PTF para productos bancarios.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fas fa-database"></i> SQL</span><span class="project-tag"><i class="fas fa-server"></i> Cloudera</span><span class="project-tag"><i class="fas fa-chart-bar"></i> SAS</span><span class="project-tag"><i class="fas fa-bolt"></i> Spark</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Modernización de infraestructura analítica bancaria con mejora del 40% en velocidad de procesamiento.</div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Automatización de Reportes</h3>
-                             <div class="icon"><i class="fas fa-cogs"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Automatización de procesos recurrentes mediante Python y VBA, reduciendo significativamente tiempos operativos.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-file-code"></i> VBA</span><span class="project-tag"><i class="fas fa-file-excel"></i> Excel</span><span class="project-tag"><i class="fas fa-retweet"></i> ETL</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Reducción del 30% en tiempos operativos, liberando 5 horas semanales por analista.</div>
-                        </div>
-                    </div>
-                     <div class="project-card">
-                        <div class="project-header">
-                            <h3>Forecast Contact Center</h3>
-                             <div class="icon"><i class="fas fa-chart-line"></i></div>
-                        </div>
-                        <div class="project-body">
-                            <p>Rediseño y optimización del modelo de pronóstico de llamadas utilizando series de tiempo en R y Python.</p>
-                            <div class="project-tags">
-                                <span class="project-tag"><i class="fab fa-r-project"></i> R</span><span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-wave-square"></i> Time Series</span><span class="project-tag"><i class="fas fa-chart-line"></i> Forecasting</span>
-                            </div>
-                            <div class="project-impact"><strong>Impacto:</strong> Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos.</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Education Section -->
-            <section id="education">
-                <div class="section-title"><h2>Educación y Certificaciones</h2></div>
-                <div class="timeline">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="timeline-card-content">
-                                <i class="fas fa-university"></i>
-                                <div>
-                                    <h3>Ingeniera Industrial</h3>
-                                    <p class="details">Universidad de Antioquia | 2017</p>
-                                    <p>Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en mejora continua y análisis de datos para la toma de decisiones.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </nav>
+                </header>
+            );
+        };
 
-                <h3 class="section-subtitle">Estudios Adicionales</h3>
-                <div class="cert-grid">
-                    <div class="cert-item"><p class="title">Data Science for All</p><p class="issuer">MinTIC | 2022</p></div>
-                    <div class="cert-item"><p class="title">Machine Learning in Python</p><p class="issuer">University of Michigan - Coursera | 2020</p></div>
-                    <div class="cert-item"><p class="title">Data Analysis and Machine Learning</p><p class="issuer">University of Michigan - Coursera | 2019</p></div>
-                    <div class="cert-item"><p class="title">Introduction to Data Science</p><p class="issuer">University of Michigan - Coursera | 2022</p></div>
-                    <div class="cert-item"><p class="title">Basic Python</p><p class="issuer">Platzi | 2022</p></div>
-                    <div class="cert-item"><p class="title">Statistics Introduction with R</p><p class="issuer">Universidad de Antioquia | 2018</p></div>
-                </div>
-
-                <h3 class="section-subtitle">Experiencia Docente</h3>
-                 <div style="max-width: 48rem; margin: 0 auto;">
-                    <div class="card" id="teaching-card">
-                        <div class="education-card-content">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h3>Profesor de Cátedra - CESDE</h3>
-                                <p class="details">CESDE | 2018 - 2020</p>
-                                <p>Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.</p>
+        // --- Hero.tsx ---
+        const Hero = React.forwardRef((props, ref) => {
+            return (
+                <section id="home" ref={ref} className="flex items-center w-full px-4 min-h-[calc(100vh-4rem)]">
+                    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] items-center gap-12 lg:gap-8 max-w-7xl mx-auto">
+                        <div className="text-center lg:text-left">
+                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4 font-poppins">
+                                Carolina Torres <span className="text-cyan-400">Zapata</span>
+                            </h1>
+                            <p className="font-poppins flex items-center justify-center lg:justify-start gap-3 text-2xl lg:text-3xl font-semibold text-cyan-400 mb-6">
+                                <i className="fas fa-chart-line"></i> Consultora Líder de Analítica | Data Science & BI
+                            </p>
+                            <p className="text-lg text-slate-300 max-w-3xl mx-auto lg:mx-0 mb-10">
+                                Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento a través de soluciones analíticas innovadoras.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+                                <a href="#contact" className="w-full sm:w-auto text-center px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-500 to-cyan-400 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i className="fas fa-paper-plane"></i> Contáctame
+                                </a>
+                                <a href="#projects" className="w-full sm:w-auto text-center px-8 py-3 rounded-full font-semibold text-cyan-400 border-2 border-cyan-400 hover:bg-cyan-400/10 hover:text-white hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+                                    <i className="fas fa-folder-open"></i> Ver Proyectos
+                                </a>
+                            </div>
+                        </div>
+                        <div className="flex justify-center items-center order-first lg:order-last">
+                            <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[460px] lg:h-[460px] rounded-full p-1.5 bg-gradient-to-br from-cyan-400 to-blue-500">
+                                <img 
+                                    src="Images/Foto.jpg" 
+                                    alt="Carolina Torres Zapata" 
+                                    className="w-full h-full object-cover rounded-full border-4 border-slate-900 shadow-inner"
+                                />
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            
-            <!-- Contact Section -->
-            <section id="contact">
-                <div class="section-title"><h2>Contacto</h2></div>
-                <p class="intro">
-                    ¿Interesado en colaborar? ¡Hablemos sobre cómo puedo aportar valor a tu proyecto u organización!
-                </p>
-                <div class="grid">
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-envelope"></i></div>
-                        <h3>Email</h3>
-                        <a href="mailto:carolina.torresz@udea.edu.co">carolina.torresz@udea.edu.co</a>
-                    </div>
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-phone"></i></div>
-                        <h3>Teléfono</h3>
-                        <a href="tel:+573165352099">+57 316 535 2099</a>
-                    </div>
-                    <div class="card">
-                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <h3>Ubicación</h3>
-                        <p>Envigado, Antioquia, Colombia</p>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/carolinatorresz/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/carolinatorresz" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-btn"><i class="fab fa-github"></i></a>
-                    <a href="mailto:carolina.torresz@udea.edu.co" title="Email" class="social-btn"><i class="fas fa-envelope"></i></a>
-                    <a href="https://wa.me/573165352099" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p class="name">Carolina Torres Zapata</p>
-        <p class="title">Consultora Líder de Analítica | Data Science & BI</p>
-        <p class="copy">&copy; 2024 Todos los derechos reservados</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Active Nav Link on Scroll ---
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('header nav a');
-
-            window.addEventListener('scroll', () => {
-                let current = 'home';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').slice(1) === current) {
-                        link.classList.add('active');
-                    }
-                });
-                 // Special case for home
-                const homeLink = document.querySelector('header nav a[href="#home"]');
-                if (window.pageYOffset < sections[1].offsetTop - 100) {
-                    homeLink.classList.add('active');
-                } else if (current !== 'home') {
-                    homeLink.classList.remove('active');
-                }
-
-            }, { passive: true });
+                </section>
+            );
         });
+
+        // --- Shared Components for Sections ---
+        const SectionTitle = ({ children }) => (
+            <div className="text-center mb-12">
+                <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold text-white inline-block relative pb-3">
+                    {children}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full"></span>
+                </h2>
+            </div>
+        );
+
+        // --- AboutCombined.tsx ---
+        const About = React.forwardRef((props, ref) => {
+            const [activeTab, setActiveTab] = useState('about');
+
+            // Content for About Tab
+            const AboutContent = () => {
+                const AboutCard = ({ icon, title, children }) => (
+                    <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                        <h3 className="flex items-center gap-4 text-2xl font-bold text-white mb-4">
+                            <i className={`${icon} text-purple-500 text-4xl flex-shrink-0`}></i> {title}
+                        </h3>
+                        <p className="text-slate-400">{children}</p>
+                    </div>
+                );
+                return (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <AboutCard icon="fas fa-briefcase" title="Impacto en el Negocio">
+                            He impulsado la transformación de datos en empresas líderes como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. Mi enfoque se centra en convertir los desafíos de negocio en oportunidades, creando soluciones de Machine Learning y BI que optimizan procesos y generan un crecimiento medible.
+                        </AboutCard>
+                        <AboutCard icon="fas fa-laptop-code" title="Enfoque Técnico End-to-End">
+                            Creo en construir soluciones de datos completas, desde la ingesta con hasta la visualización interactiva. Mi objetivo es entregar no solo un modelo, sino un producto de datos robusto y escalable que genere valor de manera continua para el negocio.
+                        </AboutCard>
+                        <AboutCard icon="fas fa-users" title="Liderazgo como Puente Estratégico">
+                            Mi rol como líder es ser un traductor: convierto las necesidades del negocio en estrategias técnicas y los complejos resultados analíticos en historias que inspiran acción. Fomento una cultura de curiosidad y mentoría para construir equipos de alto impacto.
+                        </AboutCard>
+                    </div>
+                );
+            };
+            
+            // Content for Skills Tab
+            const SkillsContent = () => {
+                const Card = ({ children }) => (
+                    <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                        {children}
+                    </div>
+                );
+                const CardTitle = ({ icon, title }) => (
+                    <h3 className="flex items-center gap-3 text-xl font-bold text-white mb-8">
+                        <i className={`${icon} text-xl`}></i> {title}
+                    </h3>
+                );
+                const SkillItem = ({ icon, title, description }) => (
+                    <li className="flex items-start gap-4 mb-6 last:mb-0">
+                        <div className="text-purple-500 mt-1 w-5 text-center"><i className={icon}></i></div>
+                        <div>
+                            <h4 className="font-semibold text-white mb-1">{title}</h4>
+                            <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
+                        </div>
+                    </li>
+                );
+                const Tool = ({ icon, name }) => (
+                    <span className="flex items-center gap-2 bg-slate-800 py-1 px-3 rounded-full border border-purple-500/30 text-sm text-slate-400">
+                        {icon && <i className={`${icon} text-purple-500`}></i>}
+                        {name}
+                    </span>
+                );
+                return (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card>
+                            <CardTitle icon="fas fa-robot" title="Ciencia de Datos & Machine Learning" />
+                            <ul className="list-none p-0">
+                                <SkillItem icon="fas fa-bullseye" title="Modelado Predictivo Estratégico" description="Dominio de un amplio espectro de algoritmos (desde Regresiones hasta Gradient Boosting) para construir modelos que anticipan tendencias y optimizan los resultados del negocio." />
+                                <SkillItem icon="fas fa-users-cog" title="Segmentación Inteligente de Clientes" description="Aplicación de técnicas de clustering (K-Means, DBSCAN) para descubrir patrones de comportamiento, permitiendo la personalización de estrategias y la identificación de nuevas oportunidades." />
+                                <SkillItem icon="fas fa-chart-line" title="Forecasting y Análisis de Series Temporales" description="Desarrollo de modelos de pronóstico precisos para optimizar la planificación de la demanda, la gestión de inventarios y la toma de decisiones financieras." />
+                                <SkillItem icon="fas fa-cogs" title="Ingeniería de Datos y Automatización" description="Diseño y despliegue de pipelines de datos robustos y reproducibles en Python, garantizando la eficiencia, calidad y escalabilidad de todo el ciclo analítico." />
+                            </ul>
+                        </Card>
+                        <Card>
+                            <CardTitle icon="fas fa-chart-bar" title="Business Intelligence & Visualización" />
+                            <ul className="list-none p-0">
+                                <SkillItem icon="fas fa-tachometer-alt" title="Dashboards Ejecutivos (Power BI & Qlik)" description="Transformación de datos complejos en dashboards intuitivos y visualmente impactantes, diseñados para facilitar la toma de decisiones estratégicas a nivel gerencial." />
+                                <SkillItem icon="fas fa-drafting-compass" title="Visualizaciones Interactivas (Dash & Plotly)" description="Creación de aplicaciones analíticas a medida con Python, permitiendo a los usuarios explorar los datos de forma dinámica para descubrir insights por sí mismos." />
+                                <SkillItem icon="fas fa-file-excel" title="Excel para Business Intelligence" description="Dominio avanzado de Power Query para la integración y transformación de datos (ETL), y automatización de reportes complejos con macros y tablas dinámicas." />
+                            </ul>
+                        </Card>
+                        <Card>
+                            <CardTitle icon="fas fa-tools" title="Lenguajes y Herramientas" />
+                            <div className="space-y-6">
+                                <div>
+                                    <h4 className="text-base font-semibold text-slate-300 mb-4 pb-2 border-b border-purple-500/30">Lenguajes de Programación y Análisis</h4>
+                                    <div className="flex flex-wrap gap-3">
+                                        <Tool icon="fab fa-python" name="Python" />
+                                        <Tool icon="fab fa-r-project" name="R" />
+                                        <Tool icon="fas fa-database" name="SQL" />
+                                        <Tool name="SAS" />
+                                        <Tool name="DAX" />
+                                        <Tool name="M" />
+                                        <Tool name="VBA" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 className="text-base font-semibold text-slate-300 mb-4 pb-2 border-b border-purple-500/30">Plataformas y Entorno</h4>
+                                    <div className="flex flex-wrap gap-3">
+                                        <Tool name="Jupyter" />
+                                        <Tool icon="fas fa-file-code" name="VS Code" />
+                                        <Tool icon="fab fa-git-alt" name="Git" />
+                                        <Tool icon="fab fa-aws" name="AWS" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                        <Card>
+                            <CardTitle icon="fas fa-user-tie" title="Habilidades Estratégicas y Liderazgo" />
+                             <ul className="list-none p-0">
+                                <SkillItem icon="fas fa-users" title="Liderazgo Técnico y Mentoría" description="Capacidad para guiar equipos multidisciplinarios, elevar sus capacidades técnicas y fomentar una cultura de datos orientada al alto rendimiento y la innovación." />
+                                <SkillItem icon="fas fa-book-open" title="Storytelling con Datos y Comunicación Ejecutiva" description="Habilidad para traducir análisis complejos en narrativas de negocio claras y persuasivas, presentando insights y recomendaciones estratégicas a nivel directivo." />
+                                <SkillItem icon="fas fa-tasks" title="Gestión de Proyectos Analíticos End-to-End" description="Liderazgo de proyectos de datos desde la consultoría inicial y el diseño de la propuesta, hasta la implementación final y la entrega de valor medible para el negocio." />
+                            </ul>
+                        </Card>
+                    </div>
+                );
+            };
+
+            // Content for Education Tab
+            const EducationContent = () => {
+                 const SectionSubtitle = ({ children }) => (
+                    <h3 className="text-2xl font-bold text-white text-center mt-12 mb-8">{children}</h3>
+                );
+                const certifications = [
+                    { title: "Data Science for All", issuer: "MinTIC | 2022" },
+                    { title: "Machine Learning in Python", issuer: "University of Michigan - Coursera | 2020" },
+                    { title: "Data Analysis and Machine Learning", issuer: "University of Michigan - Coursera | 2019" },
+                    { title: "Introduction to Data Science", issuer: "University of Michigan - Coursera | 2022" },
+                    { title: "Basic Python", issuer: "Platzi | 2022" },
+                    { title: "Statistics Introduction with R", issuer: "Universidad de Antioquia | 2018" },
+                ];
+                return (
+                    <div>
+                         <div className="relative pl-10">
+                            <div className="absolute left-[1px] top-0 h-full w-0.5 bg-gradient-to-b from-purple-500 to-cyan-400"></div>
+                            <div className="relative mb-12">
+                                <div className="absolute -left-[42px] top-1.5 w-4 h-4 bg-cyan-400 rounded-full border-4 border-slate-900 shadow-lg shadow-cyan-500/50"></div>
+                                <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                                    <div className="flex items-start gap-6">
+                                        <i className="fas fa-university text-3xl text-white mt-1"></i>
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-1">Ingeniera Industrial</h3>
+                                            <p className="font-semibold text-purple-400 mb-2">Universidad de Antioquia | 2017</p>
+                                            <p className="text-slate-400">Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en mejora continua y análisis de datos para la toma de decisiones.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <SectionSubtitle>Estudios Adicionales</SectionSubtitle>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {certifications.map(cert => (
+                                <div key={cert.title} className="bg-slate-800/50 border-l-4 border-purple-500 p-4 rounded-md transition-all duration-300 hover:bg-slate-800 hover:scale-105 hover:border-purple-400">
+                                    <p className="font-poppins font-bold text-white">{cert.title}</p>
+                                    <p className="text-sm text-cyan-400">{cert.issuer}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <SectionSubtitle>Experiencia Docente</SectionSubtitle>
+                        <div className="max-w-3xl mx-auto">
+                            <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                                <div className="flex items-start gap-6">
+                                    <i className="fas fa-graduation-cap text-3xl text-white mt-1"></i>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-white mb-1">Profesor de Cátedra - CESDE</h3>
+                                        <p className="font-semibold text-purple-400 mb-2">CESDE | 2018 - 2020</p>
+                                        <p className="text-slate-400">Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const TabButton = ({ label, tabName, icon }) => {
+                const isActive = activeTab === tabName;
+                return (
+                    <button
+                        onClick={() => setActiveTab(tabName)}
+                        className={`w-full sm:w-auto px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-cyan-400 ${
+                            isActive
+                                ? 'bg-gradient-to-r from-purple-500 to-cyan-400 text-white shadow-lg shadow-cyan-500/30'
+                                : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
+                        }`}
+                    >
+                        <i className={icon}></i>
+                        <span>{label}</span>
+                    </button>
+                );
+            };
+
+            return (
+                <section id="about" ref={ref} className="py-8 sm:py-12">
+                    <SectionTitle>Sobre Mí</SectionTitle>
+                    <p className="text-center text-lg max-w-4xl mx-auto mb-12 text-slate-400">
+                        Ingeniera Industrial con una sólida trayectoria liderando proyectos de Business Intelligence, Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+                        <TabButton label="Sobre mí" tabName="about" icon="fas fa-user" />
+                        <TabButton label="Habilidades" tabName="skills" icon="fas fa-code" />
+                        <TabButton label="Educación" tabName="education" icon="fas fa-graduation-cap" />
+                    </div>
+
+                    <div>
+                        {activeTab === 'about' && <AboutContent />}
+                        {activeTab === 'skills' && <SkillsContent />}
+                        {activeTab === 'education' && <EducationContent />}
+                    </div>
+                </section>
+            );
+        });
+
+        // --- Projects.tsx ---
+        const Projects = React.forwardRef((props, ref) => {
+            const projectsData = [
+                { title: "Dashboards Ejecutivos", icon: "fas fa-chart-pie", description: "Desarrollo y gestión de dashboards en Power BI para decisiones estratégicas en ventas, costos y desempeño.", tags: [{ name: "Power BI", icon: "fas fa-chart-pie" }, { name: "DAX", icon: "fas fa-cogs" }, { name: "Power Query", icon: "fas fa-filter" }, { name: "SQL", icon: "fas fa-database" }], impact: "Facilitación de decisiones estratégicas a nivel ejecutivo con visualizaciones en tiempo real." },
+                { title: "Modelos Predictivos - Machine Learning", icon: "fas fa-brain", description: "Implementación de modelos supervisados y no supervisados para segmentación y predicción de comportamiento de clientes.", tags: [{ name: "Python", icon: "fab fa-python" }, { name: "Scikit-learn", icon: "fas fa-brain" }, { name: "Pandas", icon: "fas fa-table" }, { name: "Random Forest", icon: "fas fa-sitemap" }], impact: "Insights clave sobre segmentación y comportamiento de clientes, mejorando estrategias comerciales." },
+                { title: "Clasificación de Noticias - PLN", icon: "fas fa-language", description: "Modelo de PLN para detectar noticias sobre lavado de activos y financiación del terrorismo (LA/FT), con pipeline de web scraping para capturar información en medios digitales.", tags: [{ name: "Python", icon: "fab fa-python" }, { name: "NLP", icon: "fas fa-comment-alt" }, { name: "ML", icon: "fas fa-robot" }, { name: "AWS", icon: "fab fa-aws" }], impact: "Automatización en detección de delitos financieros con precisión superior al 85%." },
+                { title: "Migración Data Warehouse", icon: "fas fa-database", description: "Migración del Data Warehouse bancario a SQL Impala en Cloudera, incluyendo el rediseño de modelos de Precios de Transferencia de Fondos.", tags: [{ name: "SQL", icon: "fas fa-database" }, { name: "Cloudera", icon: "fas fa-server" }, { name: "SAS", icon: "fas fa-chart-bar" }, { name: "Spark", icon: "fas fa-bolt" }], impact: "Modernización de infraestructura analítica bancaria con mejora del 40% en velocidad de procesamiento." },
+                { title: "Automatización de Reportes", icon: "fas fa-cogs", description: "Automatización de procesos recurrentes mediante Python, VBA, Power Automate, etc. reduciendo significativamente tiempos operativos.", tags: [{ name: "Python", icon: "fab fa-python" }, { name: "VBA", icon: "fas fa-file-code" }, { name: "Excel", icon: "fas fa-file-excel" }, { name: "ETL", icon: "fas fa-retweet" }], impact: "Reducción del 30% en tiempos operativos, liberando 5 horas semanales por analista." },
+                { title: "Forecast Contact Center", icon: "fas fa-chart-line", description: "Rediseño y optimización del modelo de pronóstico de llamadas usando series de tiempo en R y Python, logrando mayor precisión y rapidez en las proyecciones.", tags: [{ name: "R", icon: "fab fa-r-project" }, { name: "Python", icon: "fab fa-python" }, { name: "Time Series", icon: "fas fa-wave-square" }, { name: "Forecasting", icon: "fas fa-chart-line" }], impact: "Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos." },
+            ];
+
+            const ProjectCard = ({ title, icon, description, tags, impact }) => (
+                <div className="bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500">
+                    <div className="p-6 border-b border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 relative min-h-[8rem] flex items-center">
+                        <h3 className="text-xl font-bold text-white pr-14">{title}</h3>
+                        <div className="absolute top-4 right-4 text-4xl text-cyan-400 opacity-10"><i className={icon}></i></div>
+                    </div>
+                    <div className="p-6">
+                        <p className="min-h-[6rem] text-slate-400 mb-4">{description}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {tags.map(tag => (
+                                <span key={tag.name} className="bg-purple-500/20 text-purple-300 text-xs font-medium py-1 px-3 rounded-full flex items-center gap-1.5">
+                                    <i className={tag.icon}></i>{tag.name}
+                                </span>
+                            ))}
+                        </div>
+                        <div className="mt-4 p-3 bg-cyan-500/10 border-l-4 border-cyan-400 rounded-r-md text-sm text-cyan-200">
+                            <strong>Impacto:</strong> {impact}
+                        </div>
+                    </div>
+                </div>
+            );
+
+            return (
+                <section id="projects" ref={ref} className="py-8 sm:py-12">
+                    <SectionTitle>Proyectos Destacados</SectionTitle>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {projectsData.map((project, index) => <ProjectCard key={index} {...project} />)}
+                    </div>
+                </section>
+            );
+        });
+
+        // --- Contact.tsx ---
+        const Contact = React.forwardRef((props, ref) => {
+            const ContactCard = ({ icon, title, children, isLink, href }) => (
+                <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                    <div className="text-4xl mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                        <i className={icon}></i>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+                    {isLink ? (
+                        <a href={href} className="text-slate-300 hover:text-cyan-400 transition-colors">{children}</a>
+                    ) : (
+                        <p className="text-slate-300">{children}</p>
+                    )}
+                </div>
+            );
+
+            const SocialButton = ({ href, title, icon }) => (
+                <a href={href} target="_blank" rel="noopener noreferrer" title={title} className="w-16 h-16 bg-slate-800/50 border-2 border-purple-500 rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 hover:bg-gradient-to-br hover:from-purple-500 hover:to-cyan-400 hover:border-cyan-400 hover:scale-110 hover:rotate-6">
+                    <i className={icon}></i>
+                </a>
+            );
+
+            return (
+                <section id="contact" ref={ref} className="py-8 sm:py-12 text-center">
+                    <SectionTitle>Contacto</SectionTitle>
+                    <p className="text-lg max-w-2xl mx-auto mb-12 text-slate-400">
+                        ¿Interesado en colaborar? ¡Hablemos sobre cómo puedo aportar valor a tu proyecto u organización!
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+                        <ContactCard icon="fas fa-envelope" title="Email" isLink href="mailto:carolina.torresz@udea.edu.co">
+                            carolina.torresz@udea.edu.co
+                        </ContactCard>
+                        <ContactCard icon="fas fa-phone" title="Teléfono" isLink href="tel:+573165352099">
+                            +57 316 535 2099
+                        </ContactCard>
+                        <ContactCard icon="fas fa-map-marker-alt" title="Ubicación">
+                            Envigado, Antioquia, Colombia
+                        </ContactCard>
+                    </div>
+                     <div className="flex justify-center gap-6">
+                        <SocialButton href="https://www.linkedin.com/in/carolinatorresz/" title="LinkedIn" icon="fab fa-linkedin-in" />
+                        <SocialButton href="https://github.com/carolinatorresz" title="GitHub" icon="fab fa-github" />
+                        <SocialButton href="mailto:carolina.torresz@udea.edu.co" title="Email" icon="fas fa-envelope" />
+                        <SocialButton href="https://wa.me/573165352099" title="WhatsApp" icon="fab fa-whatsapp" />
+                    </div>
+                </section>
+            );
+        });
+        
+        // --- Footer.tsx ---
+        const Footer = () => {
+            return (
+                <footer className="bg-slate-900/50 border-t border-purple-500/30 mt-16 py-8 px-4 text-center text-slate-400">
+                    <p className="font-poppins font-bold text-white text-lg">Carolina Torres Zapata</p>
+                    <p className="text-sm">Consultora Líder de Analítica | Data Science & BI</p>
+                    <p className="text-xs mt-4 opacity-70">&copy; {new Date().getFullYear()} Todos los derechos reservados</p>
+                </footer>
+            );
+        };
+
+        // --- App.tsx ---
+        const App = () => {
+            const [activeSection, setActiveSection] = useState('home');
+            const sectionRefs = {
+                home: useRef(null),
+                about: useRef(null),
+                projects: useRef(null),
+                contact: useRef(null),
+            };
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    const sections = Object.keys(sectionRefs);
+                    let currentSection = 'home';
+
+                    for (const sectionId of sections) {
+                        const section = sectionRefs[sectionId].current;
+                        if (section) {
+                            const sectionTop = section.offsetTop;
+                            if (window.scrollY >= sectionTop - 100) {
+                                currentSection = sectionId;
+                            }
+                        }
+                    }
+                    setActiveSection(currentSection);
+                };
+                
+                window.addEventListener('scroll', handleScroll, { passive: true });
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div className="bg-slate-900 text-slate-300 overflow-x-hidden">
+                    <Header activeSection={activeSection} />
+                    <main className="pt-16">
+                        <Hero ref={sectionRefs.home} />
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <About ref={sectionRefs.about} />
+                            <Projects ref={sectionRefs.projects} />
+                            <Contact ref={sectionRefs.contact} />
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        // --- index.tsx ---
+        const rootElement = document.getElementById('root');
+        if (!rootElement) {
+          throw new Error("Could not find root element to mount to");
+        }
+
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        );
     </script>
 <script type="module" src="/index.tsx"></script>
 </body>
