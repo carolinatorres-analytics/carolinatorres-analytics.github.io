@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carolina Torres Zapata | Data Analytics & BI Consultant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Segoe+UI&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -30,6 +33,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .home-text .subtitle, .cert-item .title, footer .name {
+            font-family: 'Poppins', sans-serif;
         }
 
         /* Header */
@@ -152,10 +162,7 @@
         }
 
         .home-text h1 span {
-            background: linear-gradient(90deg, var(--text-white), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-cyan);
         }
 
         .home-text .subtitle {
@@ -254,13 +261,11 @@
 
         .photo-wrapper {
             position: relative;
-            width: clamp(280px, 80vw, 420px);
-            height: clamp(280px, 80vw, 420px);
+            width: clamp(300px, 80vw, 460px);
+            height: clamp(300px, 80vw, 460px);
             border-radius: 50%;
             padding: 5px; /* Controls border thickness */
-            background: linear-gradient(45deg, var(--primary-purple), var(--accent-cyan));
-            box-shadow: 0 0 15px 0 var(--accent-cyan), 
-                        0 0 30px 0 rgba(34, 211, 238, 0.5);
+            background: linear-gradient(45deg, var(--accent-cyan), #0ea5e9);
         }
 
         .photo-wrapper img {
@@ -1114,22 +1119,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Skill Bar Animation ---
-            const skillObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const bar = entry.target;
-                        const width = bar.getAttribute('data-width');
-                        bar.style.width = width + '%';
-                        skillObserver.unobserve(bar);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            document.querySelectorAll('.skill-bar-progress').forEach(skill => {
-                skillObserver.observe(skill);
-            });
-
             // --- Active Nav Link on Scroll ---
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('header nav a');
