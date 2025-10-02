@@ -62,6 +62,9 @@
             text-decoration: none;
             transition: color 0.3s ease;
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         header nav a:hover {
@@ -97,7 +100,7 @@
         }
 
         section {
-            padding: 6rem 1rem;
+            padding: 2.5rem 1rem;
         }
         
         .container {
@@ -108,73 +111,74 @@
         
         /* Home Section */
         #home {
-            padding: 0;
-            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 4rem);
             width: 100%;
         }
 
-        .home-grid {
+        .home-container {
             display: grid;
             grid-template-columns: 1fr;
-            height: 100vh;
+            align-items: center;
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .home-image-container {
-            display: none; /* Hidden on mobile */
-            height: 100%;
-            width: 100%;
+        @media (min-width: 992px) {
+            .home-container {
+                grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+                gap: 4rem;
+            }
         }
         
-        .home-image {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
+        .home-text {
+             text-align: center;
+        }
+        @media (min-width: 992px) {
+            .home-text {
+                text-align: left;
+            }
         }
 
-        .home-content {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            background-color: var(--bg-dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 2rem;
-            overflow: hidden;
-        }
-        
-        @media (min-width: 768px) {
-            .home-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .home-image-container {
-                display: block;
-            }
-            .home-content {
-                padding: 4rem;
-            }
-        }
-        
-        .home-content h1 {
-            font-size: clamp(2.5rem, 10vw, 4.5rem);
+        .home-text h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
             font-weight: 800;
-            color: white;
+            color: var(--text-white);
             line-height: 1.1;
+            margin-bottom: 1rem;
         }
 
-        .home-content .subtitle {
-            margin-top: 1rem;
-            font-size: clamp(1.1rem, 4vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.8);
+        .home-text h1 span {
+            background: linear-gradient(90deg, var(--text-white), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .home-description {
-            margin-top: 1.5rem;
-            font-size: clamp(1rem, 3vw, 1.125rem);
+        .home-text .subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-text .home-description {
+            font-size: clamp(1rem, 2vw, 1.1rem);
             color: var(--text-light);
-            max-width: 60ch;
+            max-width: 65ch;
+            margin: 0 auto 2.5rem;
+        }
+        
+        @media (min-width: 992px) {
+            .home-text .home-description {
+                 margin: 0 0 2.5rem;
+            }
         }
         
         .home-buttons {
@@ -182,12 +186,19 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            align-items: center;
         }
         
         @media (min-width: 640px) {
              .home-buttons {
                 flex-direction: row;
+                justify-content: center;
              }
+        }
+        @media (min-width: 992px) {
+            .home-buttons {
+                justify-content: flex-start;
+            }
         }
         
         .btn {
@@ -196,8 +207,11 @@
             font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
             text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
         
         .btn:hover {
@@ -205,31 +219,58 @@
         }
         
         .btn-primary {
-            background-color: white;
-            color: #6b21a8; /* purple-800 */
-            box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
+            color: var(--text-white);
+            border: none;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
         }
         .btn-primary:hover {
-             background-color: #f3e8ff; /* purple-100 */
+            box-shadow: 0 6px 25px rgba(34, 211, 238, 0.4);
+            background: linear-gradient(90deg, #9c7cf8, #37e0f5);
         }
         
         .btn-secondary {
-            background-color: rgba(139, 92, 246, 0.4);
-            color: white;
-            border: 1px solid rgba(139, 92, 246, 0.8);
+            background-color: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
         }
         .btn-secondary:hover {
-            background-color: rgba(139, 92, 246, 0.6);
+            background-color: rgba(34, 211, 238, 0.1);
+            color: var(--text-white);
         }
         
-        .chart-icon-overlay {
-            position: absolute;
-            bottom: 0;
-            right: 0;
+        .home-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            order: -1;
+        }
+
+        @media (min-width: 992px) {
+            .home-photo {
+                order: 1;
+            }
+        }
+
+        .photo-wrapper {
+            position: relative;
+            width: clamp(280px, 80vw, 420px);
+            height: clamp(280px, 80vw, 420px);
+            border-radius: 50%;
+            padding: 5px; /* Controls border thickness */
+            background: linear-gradient(45deg, var(--primary-purple), var(--accent-cyan));
+            box-shadow: 0 0 15px 0 var(--accent-cyan), 
+                        0 0 30px 0 rgba(34, 211, 238, 0.5);
+        }
+
+        .photo-wrapper img {
             width: 100%;
-            height: auto;
-            color: rgba(255, 255, 255, 0.05);
-            pointer-events: none;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            border: 3px solid var(--bg-dark); /* Inner border for separation */
+            box-shadow: inset 0 0 10px 0 rgba(15, 23, 42, 0.5);
         }
 
 
@@ -295,20 +336,20 @@
             }
         }
         
-        #about .card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
         #about .card h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-white);
             margin-bottom: 1rem;
+        }
+
+        #about .card h3 i {
+            color: var(--primary-purple);
+            font-size: 2rem;
+            flex-shrink: 0;
         }
         
         /* Skills Section */
@@ -317,9 +358,9 @@
             gap: 2rem;
         }
         
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             #skills .grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -327,54 +368,84 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-white);
             margin-bottom: 2rem;
         }
-        
-        .skill-item {
+
+        .skill-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
-        .skill-item:last-child {
+
+        .skill-list li:last-child {
             margin-bottom: 0;
         }
-        
-        .skill-bar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
+
+        .skill-list .icon {
+            font-size: 1.25rem;
+            color: var(--primary-purple);
+            margin-top: 0.25rem;
+            width: 20px;
+            text-align: center;
         }
-        
-        .skill-name {
+
+        .skill-list .text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-white);
+            margin-bottom: 0.25rem;
+        }
+
+        .skill-list .text p {
+            color: var(--text-extra-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .tools-category {
+            margin-bottom: 2rem;
+        }
+        .tools-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tools-category h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.5rem;
+            color: var(--text-extra-light);
+            font-size: 0.9rem;
+        }
+
+        .tools-list span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-weight: 600;
-            color: var(--text-white);
-        }
-        
-        .skill-percentage {
-            font-size: 0.875rem;
-            font-family: monospace;
-            color: var(--accent-cyan);
-        }
-        
-        .skill-bar-bg {
-            width: 100%;
-            background-color: var(--bg-medium);
+            background-color: rgba(30, 41, 59, 0.8);
+            padding: 0.25rem 0.75rem;
             border-radius: 9999px;
-            height: 0.625rem;
+            border: 1px solid var(--border-color);
         }
-        
-        .skill-bar-progress {
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            height: 100%;
-            border-radius: 9999px;
-            transition: width 1s ease-out;
-            width: 0;
+        .tools-list span i {
+            color: var(--primary-purple);
         }
         
         /* Projects Section */
@@ -413,12 +484,16 @@
             border-bottom: 1px solid var(--border-color);
             background: linear-gradient(90deg, rgba(139, 92, 246, 0.1), rgba(34, 211, 238, 0.1));
             position: relative;
+            min-height: 8rem; /* Set a minimum height to unify card headers */
+            display: flex;
+            align-items: center; /* Vertically center content */
         }
         
         .project-header h3 {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-white);
+            padding-right: 3.5rem;
         }
         
         .project-header .icon {
@@ -454,6 +529,9 @@
             font-weight: 500;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
         
         .project-impact {
@@ -501,16 +579,26 @@
             box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
 
-        .timeline-item .card .icon {
-            font-size: 2rem;
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
+        .timeline-card-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
         }
+
+        .timeline-card-content > i.fa-university {
+            font-size: 2rem;
+            color: var(--text-white);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        
         .timeline-item .card h3 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-white);
+            margin-bottom: 0.5rem;
         }
+
         .timeline-item .card .details {
             font-weight: 600;
             color: var(--primary-purple);
@@ -522,8 +610,31 @@
             font-weight: 700;
             color: var(--text-white);
             text-align: center;
-            margin-top: 6rem;
+            margin-top: 3rem;
             margin-bottom: 3rem;
+        }
+
+        .education-card-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .education-card-content > i {
+            font-size: 2rem;
+            color: var(--text-white);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        #teaching-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+        #teaching-card .details {
+            font-weight: 600;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
         }
         
         .cert-grid {
@@ -659,12 +770,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#about">Sobre Mí</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#education">Educación</a></li>
-                <li><a href="#contact">Contacto</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> Sobre Mí</a></li>
+                <li><a href="#skills"><i class="fas fa-code"></i> Habilidades</a></li>
+                <li><a href="#projects"><i class="fas fa-briefcase"></i> Proyectos</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Educación</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -672,33 +783,21 @@
     <main>
         <!-- Home Section -->
         <section id="home">
-            <div class="home-grid">
-                <div class="home-image-container">
-                    <img src="Images/Foto.jpg" 
-                         alt="Data Analytics Professional" 
-                         class="home-image">
+            <div class="home-container">
+                <div class="home-text">
+                    <h1>Carolina Torres <span>Zapata</span></h1>
+                    <p class="subtitle"><i class="fas fa-chart-line"></i> Consultora Líder de Analítica | Data Science & BI</p>
+                    <p class="home-description">
+                        Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento a través de soluciones analíticas innovadoras.
+                    </p>
+                    <div class="home-buttons">
+                        <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contáctame</a>
+                        <a href="#projects" class="btn btn-secondary"><i class="fas fa-folder-open"></i> Ver Proyectos</a>
+                    </div>
                 </div>
-                <div class="home-content">
-                    <svg class="chart-icon-overlay" viewBox="0 0 400 150" preserveAspectRatio="xMidYMax meet">
-                        <path d="M50 130 L100 80 L150 100 L200 60 L250 80 L300 40 L350 70" fill="none" stroke="currentColor" stroke-width="2" stroke-opacity="0.5"/>
-                        <path d="M50 130 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.3"/>
-                        <path d="M100 80 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.4"/>
-                        <path d="M150 100 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.3"/>
-                        <path d="M200 60 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.6"/>
-                        <path d="M250 80 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.4"/>
-                        <path d="M300 40 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.7"/>
-                        <path d="M350 70 V140" stroke="currentColor" stroke-width="10" stroke-opacity="0.5"/>
-                    </svg>
-                    <div style="position: relative; z-index: 10;">
-                        <h1>Carolina Torres Zapata</h1>
-                        <p class="subtitle">Consultora Líder de Analítica | Data Science & BI</p>
-                        <p class="home-description">
-                            Transformo datos en decisiones estratégicas y resultados medibles. Con más de 6 años de experiencia en Business Intelligence, Machine Learning e IA, ayudo a las empresas a impulsar su crecimiento a través de soluciones analíticas innovadoras.
-                        </p>
-                        <div class="home-buttons">
-                            <a href="#projects" class="btn btn-primary">Mis proyectos</a>
-                            <a href="#contact" class="btn btn-secondary">Contáctame</a>
-                        </div>
+                <div class="home-photo">
+                    <div class="photo-wrapper">
+                        <img src="Images/Foto.jpg" alt="Carolina Torres Zapata">
                     </div>
                 </div>
             </div>
@@ -709,23 +808,20 @@
             <section id="about">
                 <div class="section-title"><h2>Sobre Mí</h2></div>
                 <p class="intro">
-                    Ingeniera Industrial y Especialista en Analítica con una sólida trayectoria liderando proyectos de Business Intelligence, Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
+                    Ingeniera Industrial con una sólida trayectoria liderando proyectos de Business Intelligence, Machine Learning e Inteligencia Artificial en empresas de sectores como banca, logística y tecnología. Mi pasión es convertir datos complejos en historias claras que impulsen la toma de decisiones estratégicas.
                 </p>
                 <div class="grid">
                     <div class="card">
-                        <div class="icon"><i class="fas fa-briefcase"></i></div>
-                        <h3>Experiencia Profesional</h3>
-                        <p>He liderado proyectos de alto impacto en empresas como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. Mi experiencia abarca desde la implementación de dashboards ejecutivos hasta el desarrollo de modelos de Machine Learning para optimización de procesos, pronóstico de demanda y análisis predictivo.</p>
+                        <h3><i class="fas fa-briefcase"></i> Impacto en el Negocio</h3>
+                        <p>He impulsado la transformación de datos en empresas líderes como <strong>Datecsa, PRIMO, Avon, Rappi y Banistmo</strong>. Mi enfoque se centra en convertir los desafíos de negocio en oportunidades, creando soluciones de Machine Learning y BI que optimizan procesos y generan un crecimiento medible.</p>
                     </div>
                     <div class="card">
-                        <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Expertise Técnico</h3>
-                        <p>Dominio avanzado en <strong>Python, R, SQL, Power BI y Qlik Cloud</strong>. Especializada en Machine Learning (Random Forest, XGBoost, clustering), automatización de procesos y desarrollo de soluciones analíticas que generan valor medible para el negocio.</p>
+                        <h3><i class="fas fa-laptop-code"></i> Enfoque Técnico End-to-End</h3>
+                        <p>Creo en construir soluciones de datos completas, desde la ingesta con hasta la visualización interactiva. Mi objetivo es entregar no solo un modelo, sino un producto de datos robusto y escalable que genere valor de manera continua para el negocio.</p>
                     </div>
                     <div class="card">
-                        <div class="icon"><i class="fas fa-users"></i></div>
-                        <h3>Liderazgo y Mentoría</h3>
-                        <p>Reconocida por mi capacidad de liderar equipos multidisciplinarios, comunicar insights complejos a nivel ejecutivo y formar talento en herramientas analíticas. Experiencia como docente en análisis de datos y <strong>storytelling efectivo</strong> con datos.</p>
+                        <h3><i class="fas fa-users"></i> Liderazgo como Puente Estratégico</h3>
+                        <p>Mi rol como líder es ser un traductor: convierto las necesidades del negocio en estrategias técnicas y los complejos resultados analíticos en historias que inspiran acción. Fomento una cultura de curiosidad y mentoría para construir equipos de alto impacto.</p>
                     </div>
                 </div>
             </section>
@@ -735,97 +831,113 @@
                 <div class="section-title"><h2>Habilidades</h2></div>
                 <div class="grid">
                     <div class="card">
-                        <h3><i class="fas fa-robot"></i> Ciencia de Datos & ML</h3>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fab fa-python"></i> Python</span>
-                                <span class="skill-percentage">95%</span>
+                        <h3><i class="fas fa-robot"></i> Ciencia de Datos & Machine Learning</h3>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="icon"><i class="fas fa-bullseye"></i></div>
+                                <div class="text">
+                                    <h4>Modelado Predictivo Estratégico</h4>
+                                    <p>Dominio de un amplio espectro de algoritmos (desde Regresiones hasta Gradient Boosting) para construir modelos que anticipan tendencias y optimizan los resultados del negocio.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-users-cog"></i></div>
+                                <div class="text">
+                                    <h4>Segmentación Inteligente de Clientes</h4>
+                                    <p>Aplicación de técnicas de clustering (K-Means, DBSCAN) para descubrir patrones de comportamiento, permitiendo la personalización de estrategias y la identificación de nuevas oportunidades.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                                <div class="text">
+                                    <h4>Forecasting y Análisis de Series Temporales</h4>
+                                    <p>Desarrollo de modelos de pronóstico precisos para optimizar la planificación de la demanda, la gestión de inventarios y la toma de decisiones financieras.</p>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="icon"><i class="fas fa-cogs"></i></div>
+                                <div class="text">
+                                    <h4>Ingeniería de Datos y Automatización</h4>
+                                    <p>Diseño y despliegue de pipelines de datos robustos y reproducibles en Python, garantizando la eficiencia, calidad y escalabilidad de todo el ciclo analítico.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-chart-bar"></i> Business Intelligence & Visualización</h3>
+                         <ul class="skill-list">
+                            <li>
+                                <div class="icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="text">
+                                    <h4>Dashboards Ejecutivos (Power BI & Qlik)</h4>
+                                    <p>Transformación de datos complejos en dashboards intuitivos y visualmente impactantes, diseñados para facilitar la toma de decisiones estratégicas a nivel gerencial.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-drafting-compass"></i></div>
+                                <div class="text">
+                                    <h4>Visualizaciones Interactivas (Dash & Plotly)</h4>
+                                    <p>Creación de aplicaciones analíticas a medida con Python, permitiendo a los usuarios explorar los datos de forma dinámica para descubrir insights por sí mismos.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-file-excel"></i></div>
+                                <div class="text">
+                                    <h4>Excel para Business Intelligence</h4>
+                                    <p>Dominio avanzado de Power Query para la integración y transformación de datos (ETL), y automatización de reportes complejos con macros y tablas dinámicas.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-tools"></i> Lenguajes y Herramientas</h3>
+                        <div class="tools-category">
+                            <h4>Lenguajes de Programación y Análisis</h4>
+                            <div class="tools-list">
+                                <span><i class="fab fa-python"></i> Python</span>
+                                <span><i class="fab fa-r-project"></i> R</span>
+                                <span><i class="fas fa-database"></i> SQL</span>
+                                <span>SAS</span>
+                                <span>DAX</span>
+                                <span>M</span>
+                                <span>VBA</span>
                             </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-database"></i> SQL</span>
-                                <span class="skill-percentage">90%</span>
+                        <div class="tools-category">
+                            <h4>Plataformas y Entorno</h4>
+                            <div class="tools-list">
+                                <span>Jupyter</span>
+                                <span><i class="fas fa-file-code"></i> VS Code</span>
+                                <span><i class="fab fa-git-alt"></i> Git</span>
+                                <span><i class="fab fa-aws"></i> AWS</span>
                             </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fab fa-r-project"></i> R</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="85"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-brain"></i> Machine Learning</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
                         </div>
                     </div>
                     <div class="card">
-                        <h3><i class="fas fa-chart-bar"></i> BI & Visualización</h3>
-                         <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-chart-pie"></i> Power BI</span>
-                                <span class="skill-percentage">95%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-chart-area"></i> Qlik Cloud</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="85"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-chart-line"></i> Dash & Plotly</span>
-                                <span class="skill-percentage">88%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="88"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-file-excel"></i> Excel Avanzado</span>
-                                <span class="skill-percentage">92%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="92"></div></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3><i class="fas fa-handshake"></i> Soft Skills</h3>
-                         <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-user-tie"></i> Liderazgo Técnico</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-comments"></i> Storytelling con Datos</span>
-                                <span class="skill-percentage">95%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="95"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-tasks"></i> Gestión de Proyectos</span>
-                                <span class="skill-percentage">88%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="88"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-bar-header">
-                                <span class="skill-name"><i class="fas fa-chalkboard-teacher"></i> Mentoría</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar-bg"><div class="skill-bar-progress" data-width="90"></div></div>
-                        </div>
+                        <h3><i class="fas fa-user-tie"></i> Habilidades Estratégicas y Liderazgo</h3>
+                        <ul class="skill-list">
+                            <li>
+                                <div class="icon"><i class="fas fa-users"></i></div>
+                                <div class="text">
+                                    <h4>Liderazgo Técnico y Mentoría</h4>
+                                    <p>Capacidad para guiar equipos multidisciplinarios, elevar sus capacidades técnicas y fomentar una cultura de datos orientada al alto rendimiento y la innovación.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-book-open"></i></div>
+                                <div class="text">
+                                    <h4>Storytelling con Datos y Comunicación Ejecutiva</h4>
+                                    <p>Habilidad para traducir análisis complejos en narrativas de negocio claras y persuasivas, presentando insights y recomendaciones estratégicas a nivel directivo.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon"><i class="fas fa-tasks"></i></div>
+                                <div class="text">
+                                    <h4>Gestión de Proyectos Analíticos End-to-End</h4>
+                                    <p>Liderazgo de proyectos de datos desde la consultoría inicial y el diseño de la propuesta, hasta la implementación final y la entrega de valor medible para el negocio.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -836,13 +948,13 @@
                 <div class="grid">
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>Dashboards Ejecutivos - PRIMO</h3>
+                            <h3>Dashboards Ejecutivos</h3>
                             <div class="icon"><i class="fas fa-chart-pie"></i></div>
                         </div>
                         <div class="project-body">
                             <p>Gestión de más de 50 dashboards interactivos en Power BI para decisiones estratégicas en ventas, costos y desempeño operativo.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Power BI</span><span class="project-tag">DAX</span><span class="project-tag">Power Query</span><span class="project-tag">SQL</span>
+                                <span class="project-tag"><i class="fas fa-chart-pie"></i> Power BI</span><span class="project-tag"><i class="fas fa-cogs"></i> DAX</span><span class="project-tag"><i class="fas fa-filter"></i> Power Query</span><span class="project-tag"><i class="fas fa-database"></i> SQL</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Facilitación de decisiones estratégicas a nivel ejecutivo con visualizaciones en tiempo real.</div>
                         </div>
@@ -855,7 +967,7 @@
                         <div class="project-body">
                             <p>Implementación de modelos predictivos con regresión logística, Random Forest y clustering para análisis de comportamiento de clientes.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">Pandas</span><span class="project-tag">Random Forest</span>
+                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-brain"></i> Scikit-learn</span><span class="project-tag"><i class="fas fa-table"></i> Pandas</span><span class="project-tag"><i class="fas fa-sitemap"></i> Random Forest</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Insights clave sobre segmentación y comportamiento de clientes, mejorando estrategias comerciales.</div>
                         </div>
@@ -868,20 +980,20 @@
                         <div class="project-body">
                             <p>Modelo de clasificación utilizando Procesamiento de Lenguaje Natural y Machine Learning, especializado en delitos financieros.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Python</span><span class="project-tag">NLP</span><span class="project-tag">ML</span><span class="project-tag">AWS</span>
+                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-comment-alt"></i> NLP</span><span class="project-tag"><i class="fas fa-robot"></i> ML</span><span class="project-tag"><i class="fab fa-aws"></i> AWS</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Automatización en detección de delitos financieros con precisión superior al 85%.</div>
                         </div>
                     </div>
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>Migración Data Warehouse - Banistmo</h3>
+                            <h3>Migración Data Warehouse</h3>
                              <div class="icon"><i class="fas fa-database"></i></div>
                         </div>
                         <div class="project-body">
                             <p>Lideré la migración técnica del Data Warehouse a SQL Impala Cloudera, incluyendo rediseño de modelos PTF para productos bancarios.</p>
                             <div class="project-tags">
-                                <span class="project-tag">SQL</span><span class="project-tag">Cloudera</span><span class="project-tag">SAS</span><span class="project-tag">Spark</span>
+                                <span class="project-tag"><i class="fas fa-database"></i> SQL</span><span class="project-tag"><i class="fas fa-server"></i> Cloudera</span><span class="project-tag"><i class="fas fa-chart-bar"></i> SAS</span><span class="project-tag"><i class="fas fa-bolt"></i> Spark</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Modernización de infraestructura analítica bancaria con mejora del 40% en velocidad de procesamiento.</div>
                         </div>
@@ -894,20 +1006,20 @@
                         <div class="project-body">
                             <p>Automatización de procesos recurrentes mediante Python y VBA, reduciendo significativamente tiempos operativos.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Python</span><span class="project-tag">VBA</span><span class="project-tag">Excel</span><span class="project-tag">ETL</span>
+                                <span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-file-code"></i> VBA</span><span class="project-tag"><i class="fas fa-file-excel"></i> Excel</span><span class="project-tag"><i class="fas fa-retweet"></i> ETL</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Reducción del 30% en tiempos operativos, liberando 5 horas semanales por analista.</div>
                         </div>
                     </div>
                      <div class="project-card">
                         <div class="project-header">
-                            <h3>Forecast Contact Center - Avianca</h3>
+                            <h3>Forecast Contact Center</h3>
                              <div class="icon"><i class="fas fa-chart-line"></i></div>
                         </div>
                         <div class="project-body">
                             <p>Rediseño y optimización del modelo de pronóstico de llamadas utilizando series de tiempo en R y Python.</p>
                             <div class="project-tags">
-                                <span class="project-tag">R</span><span class="project-tag">Python</span><span class="project-tag">Time Series</span><span class="project-tag">Forecasting</span>
+                                <span class="project-tag"><i class="fab fa-r-project"></i> R</span><span class="project-tag"><i class="fab fa-python"></i> Python</span><span class="project-tag"><i class="fas fa-wave-square"></i> Time Series</span><span class="project-tag"><i class="fas fa-chart-line"></i> Forecasting</span>
                             </div>
                             <div class="project-impact"><strong>Impacto:</strong> Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos.</div>
                         </div>
@@ -923,24 +1035,19 @@
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="card">
-                            <div class="icon"><i class="fas fa-university"></i></div>
-                            <h3>Ingeniera Industrial</h3>
-                            <p class="details">Universidad de Antioquia | 2017</p>
-                            <p>Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en mejora continua y análisis de datos para la toma de decisiones.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="icon"><i class="fas fa-chart-line"></i></div>
-                            <h3>Especialista en Analítica de Datos</h3>
-                            <p class="details">Universidad de Antioquia</p>
-                            <p>Especialización enfocada en técnicas avanzadas de análisis de datos, modelado estadístico, Business Intelligence y desarrollo de soluciones analíticas para la industria.</p>
+                            <div class="timeline-card-content">
+                                <i class="fas fa-university"></i>
+                                <div>
+                                    <h3>Ingeniera Industrial</h3>
+                                    <p class="details">Universidad de Antioquia | 2017</p>
+                                    <p>Formación integral en procesos industriales, optimización y gestión de operaciones con enfoque en mejora continua y análisis de datos para la toma de decisiones.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <h3 class="section-subtitle">Certificaciones Profesionales</h3>
+                <h3 class="section-subtitle">Estudios Adicionales</h3>
                 <div class="cert-grid">
                     <div class="cert-item"><p class="title">Data Science for All</p><p class="issuer">MinTIC | 2022</p></div>
                     <div class="cert-item"><p class="title">Machine Learning in Python</p><p class="issuer">University of Michigan - Coursera | 2020</p></div>
@@ -952,11 +1059,15 @@
 
                 <h3 class="section-subtitle">Experiencia Docente</h3>
                  <div style="max-width: 48rem; margin: 0 auto;">
-                    <div class="card">
-                        <div class="icon" style="font-size: 2.5rem;"><i class="fas fa-graduation-cap"></i></div>
-                        <h3>Profesor de Cátedra - CESDE</h3>
-                        <p class="details">CESDE | 2021 - 2022</p>
-                        <p>Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.</p>
+                    <div class="card" id="teaching-card">
+                        <div class="education-card-content">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h3>Profesor de Cátedra - CESDE</h3>
+                                <p class="details">CESDE | 2018 - 2020</p>
+                                <p>Diplomado en Excel y Análisis de Datos en Power BI. Formación de talento en herramientas analíticas, mejores prácticas de visualización de datos y desarrollo de competencias en Business Intelligence.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1038,6 +1149,14 @@
                         link.classList.add('active');
                     }
                 });
+                 // Special case for home
+                const homeLink = document.querySelector('header nav a[href="#home"]');
+                if (window.pageYOffset < sections[1].offsetTop - 100) {
+                    homeLink.classList.add('active');
+                } else if (current !== 'home') {
+                    homeLink.classList.remove('active');
+                }
+
             }, { passive: true });
         });
     </script>
