@@ -21,15 +21,13 @@
     </style>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
+      }
+    }
+    </script>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
@@ -37,8 +35,6 @@
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect, useRef } from 'react';
         import ReactDOM from 'react-dom/client';
-
-        // Components
 
         // --- Header.tsx ---
         const Header = ({ activeSection }) => {
@@ -111,7 +107,7 @@
             );
         });
 
-        // --- Shared Components for Sections ---
+        // --- SectionTitle.tsx ---
         const SectionTitle = ({ children }) => (
             <div className="text-center mb-12">
                 <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold text-white inline-block relative pb-3">
@@ -121,11 +117,10 @@
             </div>
         );
 
-        // --- AboutCombined.tsx ---
+        // --- About.tsx ---
         const About = React.forwardRef((props, ref) => {
             const [activeTab, setActiveTab] = useState('about');
 
-            // Content for About Tab
             const AboutContent = () => {
                 const AboutCard = ({ icon, title, children }) => (
                     <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
@@ -150,7 +145,6 @@
                 );
             };
             
-            // Content for Skills Tab
             const SkillsContent = () => {
                 const Card = ({ children }) => (
                     <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
@@ -234,7 +228,6 @@
                 );
             };
 
-            // Content for Education Tab
             const EducationContent = () => {
                  const SectionSubtitle = ({ children }) => (
                     <h3 className="text-2xl font-bold text-white text-center mt-12 mb-8">{children}</h3>
@@ -336,7 +329,7 @@
             
             if (!project || !project.details) return null;
 
-            const { title, githubLink, slides } = project.details;
+            const { githubLink, slides } = project.details;
             const totalSlides = slides.length;
 
             const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -406,7 +399,6 @@
                         className="bg-slate-900 border border-purple-500/50 rounded-2xl shadow-2xl shadow-purple-500/20 w-full max-w-4xl max-h-[90vh] flex flex-col relative animate-slide-up"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Header */}
                         <div className="p-4 sm:p-6 border-b border-purple-500/30 flex justify-between items-center flex-shrink-0">
                             <h2 className="text-lg sm:text-xl font-bold text-white font-poppins">{slides[currentSlide].title}</h2>
                             <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors text-2xl w-8 h-8 rounded-full bg-slate-700/50 hover:bg-slate-700 flex items-center justify-center">
@@ -414,15 +406,14 @@
                             </button>
                         </div>
 
-                        {/* Body */}
                         <div className="flex-grow p-4 sm:p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                            <div className="relative w-full aspect-video rounded-lg overflow-hidden self-start bg-white">
-                                <img src={slides[currentSlide].image} alt={slides[currentSlide].title} className="w-full h-full object-contain transition-transform duration-500 ease-in-out" />
+                           <div className="relative w-full aspect-video rounded-lg overflow-hidden self-start bg-slate-800">
+                                <img src={slides[currentSlide].image} alt={slides[currentSlide].title} className="w-full h-full object-cover transition-transform duration-500 ease-in-out" />
                                 <button onClick={prevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 rounded-full text-white hover:bg-black/70 transition-all"><i className="fas fa-chevron-left"></i></button>
                                 <button onClick={nextSlide} className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 rounded-full text-white hover:bg-black/70 transition-all"><i className="fas fa-chevron-right"></i></button>
                                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                                     {slides.map((_, i) => (
-                                        <button key={i} onClick={() => setCurrentSlide(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${currentSlide === i ? 'bg-slate-800 scale-110' : 'bg-slate-800/40 hover:bg-slate-800/70'}`}></button>
+                                        <button key={i} onClick={() => setCurrentSlide(i)} className={`w-2.5 h-2.5 rounded-full transition-all ${currentSlide === i ? 'bg-white scale-110' : 'bg-white/40 hover:bg-white/70'}`}></button>
                                     ))}
                                 </div>
                             </div>
@@ -431,7 +422,6 @@
                             </div>
                         </div>
 
-                        {/* Footer */}
                         <div className="p-4 sm:p-6 bg-slate-900/50 border-t border-purple-500/30 flex flex-col sm:flex-row justify-between items-center gap-4 flex-shrink-0">
                             <div className="flex flex-wrap gap-2">
                                 {project.tags.map(tag => (
@@ -482,12 +472,12 @@
                         slides: [
                             {
                                 title: "Contexto & Desafío – ModaMax",
-                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/main/Images/ContextoModaMax.png",
+                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/ModaMax1.png",
                                 text: "ModaMax, cadena de moda con 15 tiendas en LATAM, crecía rápidamente, pero sus datos no acompañaban el ritmo.\n\nEl equipo directivo enfrentaba:\n❌ Reportes inconsistentes entre tiendas y ecommerce.\n⏱️ +20h/mes en consolidación manual en Excel.\n📉 Dificultad para identificar productos rentables.\n🔗 Desconexión entre campañas y ventas físicas.\n\nEn resumen: las decisiones se basaban en suposiciones."
                             },
                             {
                                 title: "Solución Implementada",
-                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/DashboardModaMax.png",
+                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/ModaMax2.png",
                                 text: "Diseñé un dashboard dinámico en Power BI, integrando todas las fuentes de datos en una sola vista.\n\n🔄 Integración 360°: ventas (POS y ecommerce), inventario, clientes y campañas digitales.\n📊 Visualizaciones claras y filtros inteligentes para explorar datos en tiempo real.\n📈 Insights accionables disponibles para directivos.\n🌎 Una única fuente de verdad para toda la organización."
                             },
                             {
@@ -510,17 +500,17 @@
                         slides: [
                             {
                                 title: "Contexto & Desafío – Detectando Riesgos Financieros",
-                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNContexto.png",
+                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLN2.png",
                                 text: "Una entidad financiera necesitaba monitorear noticias para identificar riesgos de lavado de activos y financiación del terrorismo (LA/FT).\n\nProblemas clave:\n❌ Revisión manual de medios digitales → proceso lento y propenso a errores.\n📉 Dificultad para detectar a tiempo noticias críticas que afectaran la reputación.\n⏱️ Volumen creciente de información imposible de analizar sin automatización."
                             },
                             {
                                 title: "Solución Implementada",
-                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNSolucion.png",
+                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNSol1.png",
                                 text: "Pipeline automatizado con Python y NLP para recopilar y clasificar noticias.\n\n🔎 Web Scraping: captura diaria de noticias en medios digitales.\n🧹 Preprocesamiento de texto: limpieza y normalización de titulares.\n🤖 Modelo de Machine Learning (NLP): clasificación automática de noticias sobre LA/FT.\n☁️ Integración en AWS para escalabilidad."
                             },
                             {
                                 title: "Resultados & Impacto",
-                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNImpacto.png",
+                                image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNImp.png",
                                 text: "🎯 Precisión superior al 85% en clasificación de noticias críticas.\n⏱️ Reducción drástica del tiempo de monitoreo: de horas manuales a análisis en minutos.\n🔐 Mitigación de riesgos reputacionales mediante detección temprana de delitos financieros.\n📊 Información lista para analistas y equipos de cumplimiento."
                             }
                         ]
@@ -531,11 +521,11 @@
                 { title: "Forecast Contact Center", icon: "fas fa-chart-line", description: "Rediseño y optimización del modelo de pronóstico de llamadas utilizando series de tiempo en R y Python.", tags: [{ name: "R", icon: "fab fa-r-project" }, { name: "Python", icon: "fab fa-python" }, { name: "Time Series", icon: "fas fa-wave-square" }, { name: "Forecasting", icon: "fas fa-chart-line" }], impact: "Mayor velocidad y precisión en pronósticos, optimizando la asignación de recursos humanos." },
             ];
 
-            const ProjectCard = ({ project }) => {
+            const ProjectCard = ({ project, onClick }) => {
                 const { title, icon, description, tags, impact, details } = project;
                 return (
                     <div
-                        onClick={() => details && setSelectedProject(project)}
+                        onClick={onClick}
                         className={`bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 
                             ${details ? 'hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500 cursor-pointer' : 'opacity-60 cursor-not-allowed'}`}
                     >
@@ -564,7 +554,13 @@
                 <section id="projects" ref={ref} className="py-8 sm:py-12">
                     <SectionTitle>Proyectos Destacados</SectionTitle>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projectsData.map((project, index) => <ProjectCard key={index} project={project} />)}
+                        {projectsData.map((project, index) => 
+                            <ProjectCard 
+                                key={index} 
+                                project={project} 
+                                onClick={() => project.details && setSelectedProject(project)} 
+                            />
+                        )}
                     </div>
                     {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
                 </section>
