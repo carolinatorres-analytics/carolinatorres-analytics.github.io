@@ -120,9 +120,9 @@
         // --- About.tsx ---
         const About = React.forwardRef((props, ref) => {
             const [activeTab, setActiveTab] = useState('about');
-
+            
             const AboutContent = () => {
-                const AboutCard = ({ icon, title, children }) => (
+                 const AboutCard = ({ icon, title, children }) => (
                     <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
                         <h3 className="flex items-center gap-4 text-2xl font-bold text-white mb-4">
                             <i className={`${icon} text-purple-500 text-4xl flex-shrink-0`}></i> {title}
@@ -147,18 +147,18 @@
             
             const SkillsContent = () => {
                 const Card = ({ children }) => (
-                    <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                    <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400 h-full">
                         {children}
                     </div>
                 );
                 const CardTitle = ({ icon, title }) => (
                     <h3 className="flex items-center gap-3 text-xl font-bold text-white mb-8">
-                        <i className={`${icon} text-xl`}></i> {title}
+                        <i className={`${icon} text-xl text-white`}></i> {title}
                     </h3>
                 );
                 const SkillItem = ({ icon, title, description }) => (
                     <li className="flex items-start gap-4 mb-6 last:mb-0">
-                        <div className="text-purple-500 mt-1 w-5 text-center"><i className={icon}></i></div>
+                        <div className="text-purple-500 mt-1 w-5 text-center flex-shrink-0"><i className={icon}></i></div>
                         <div>
                             <h4 className="font-semibold text-white mb-1">{title}</h4>
                             <p className="text-slate-400 text-sm leading-relaxed">{description}</p>
@@ -168,7 +168,7 @@
                 const Tool = ({ icon, name }) => (
                     <span className="flex items-center gap-2 bg-slate-800 py-1 px-3 rounded-full border border-purple-500/30 text-sm text-slate-400">
                         {icon && <i className={`${icon} text-purple-500`}></i>}
-                        {name}
+                        <span>{name}</span>
                     </span>
                 );
                 return (
@@ -176,18 +176,20 @@
                         <Card>
                             <CardTitle icon="fas fa-robot" title="Ciencia de Datos & Machine Learning" />
                             <ul className="list-none p-0">
-                                <SkillItem icon="fas fa-bullseye" title="Modelado Predictivo Estratégico" description="Dominio de un amplio espectro de algoritmos (desde Regresiones hasta Gradient Boosting) para construir modelos que anticipan tendencias y optimizan los resultados del negocio." />
-                                <SkillItem icon="fas fa-users-cog" title="Segmentación Inteligente de Clientes" description="Aplicación de técnicas de clustering (K-Means, DBSCAN) para descubrir patrones de comportamiento, permitiendo la personalización de estrategias y la identificación de nuevas oportunidades." />
-                                <SkillItem icon="fas fa-chart-line" title="Forecasting y Análisis de Series Temporales" description="Desarrollo de modelos de pronóstico precisos para optimizar la planificación de la demanda, la gestión de inventarios y la toma de decisiones financieras." />
-                                <SkillItem icon="fas fa-cogs" title="Ingeniería de Datos y Automatización" description="Diseño y despliegue de pipelines de datos robustos y reproducibles en Python, garantizando la eficiencia, calidad y escalabilidad de todo el ciclo analítico." />
+                                <SkillItem icon="fas fa-bullseye" title="Modelado Predictivo" description="Construcción de modelos que anticipan comportamientos y optimizan decisiones de negocio." />
+                                <SkillItem icon="fas fa-users-cog" title="Segmentación & Forecasting" description="Identificación de patrones y predicción de demanda con técnicas de clustering y series temporales." />
+                                <SkillItem icon="fas fa-cogs" title="Automatización & Pipelines" description="Desarrollo de flujos analíticos reproducibles en Python y entornos cloud." />
                             </ul>
                         </Card>
                         <Card>
                             <CardTitle icon="fas fa-chart-bar" title="Business Intelligence & Visualización" />
                             <ul className="list-none p-0">
-                                <SkillItem icon="fas fa-tachometer-alt" title="Dashboards Ejecutivos (Power BI & Qlik)" description="Transformación de datos complejos en dashboards intuitivos y visualmente impactantes, diseñados para facilitar la toma de decisiones estratégicas a nivel gerencial." />
-                                <SkillItem icon="fas fa-drafting-compass" title="Visualizaciones Interactivas (Dash & Plotly)" description="Creación de aplicaciones analíticas a medida con Python, permitiendo a los usuarios explorar los datos de forma dinámica para descubrir insights por sí mismos." />
-                                <SkillItem icon="fas fa-file-excel" title="Excel para Business Intelligence" description="Dominio avanzado de Power Query para la integración y transformación de datos (ETL), y automatización de reportes complejos con macros y tablas dinámicas." />
+                                <SkillItem
+                                    icon="fas fa-tachometer-alt"
+                                    title="Dashboards Ejecutivos (Power BI, Qlik)"
+                                    description="Visualizaciones estratégicas que impulsan decisiones a nivel directivo." />
+                                <SkillItem icon="fas fa-drafting-compass" title="Apps Analíticas (Dash, Plotly)" description="Creación de experiencias interactivas que facilitan la exploración de datos." />
+                                <SkillItem icon="fas fa-retweet" title="ETL & Reporting" description="Integración y automatización de procesos de datos con Power Query y VBA." />
                             </ul>
                         </Card>
                         <Card>
@@ -196,13 +198,12 @@
                                 <div>
                                     <h4 className="text-base font-semibold text-slate-300 mb-4 pb-2 border-b border-purple-500/30">Lenguajes de Programación y Análisis</h4>
                                     <div className="flex flex-wrap gap-3">
-                                        <Tool icon="fab fa-python" name="Python" />
-                                        <Tool icon="fab fa-r-project" name="R" />
-                                        <Tool icon="fas fa-database" name="SQL" />
-                                        <Tool name="SAS" />
-                                        <Tool name="DAX" />
-                                        <Tool name="M" />
-                                        <Tool name="VBA" />
+                                       <Tool icon="fab fa-python" name="Python"/>
+                                       <Tool icon="fab fa-r-project" name="R"/>
+                                       <Tool icon="fas fa-database" name="SQL"/>
+                                       <Tool name="DAX"/>
+                                       <Tool name="M"/>
+                                       <Tool name="VBA"/>
                                     </div>
                                 </div>
                                 <div>
@@ -210,18 +211,19 @@
                                     <div className="flex flex-wrap gap-3">
                                         <Tool name="Jupyter" />
                                         <Tool icon="fas fa-file-code" name="VS Code" />
-                                        <Tool icon="fab fa-git-alt" name="Git" />
+                                        <Tool icon="fab fa-github" name="Git & GitHub" />
                                         <Tool icon="fab fa-aws" name="AWS" />
+                                        <Tool icon="fab fa-azure" name="Azure" />
                                     </div>
                                 </div>
                             </div>
                         </Card>
                         <Card>
-                            <CardTitle icon="fas fa-user-tie" title="Habilidades Estratégicas y Liderazgo" />
+                            <CardTitle icon="fas fa-user-tie" title="Habilidades Estratégicas" />
                              <ul className="list-none p-0">
-                                <SkillItem icon="fas fa-users" title="Liderazgo Técnico y Mentoría" description="Capacidad para guiar equipos multidisciplinarios, elevar sus capacidades técnicas y fomentar una cultura de datos orientada al alto rendimiento y la innovación." />
-                                <SkillItem icon="fas fa-book-open" title="Storytelling con Datos y Comunicación Ejecutiva" description="Habilidad para traducir análisis complejos en narrativas de negocio claras y persuasivas, presentando insights y recomendaciones estratégicas a nivel directivo." />
-                                <SkillItem icon="fas fa-tasks" title="Gestión de Proyectos Analíticos End-to-End" description="Liderazgo de proyectos de datos desde la consultoría inicial y el diseño de la propuesta, hasta la implementación final y la entrega de valor medible para el negocio." />
+                                <SkillItem icon="fas fa-users" title="Liderazgo & Mentoría Técnica" description="Impulso de equipos de alto rendimiento y cultura de innovación." />
+                                <SkillItem icon="fas fa-book-open" title="Storytelling con Datos" description="Traducción de análisis complejos en historias estratégicas." />
+                                <SkillItem icon="fas fa-tasks" title="Gestión End-to-End" description="Ejecución integral de proyectos analíticos desde el diseño hasta la entrega de valor." />
                             </ul>
                         </Card>
                     </div>
@@ -229,7 +231,7 @@
             };
 
             const EducationContent = () => {
-                 const SectionSubtitle = ({ children }) => (
+                const SectionSubtitle = ({ children }) => (
                     <h3 className="text-2xl font-bold text-white text-center mt-12 mb-8">{children}</h3>
                 );
                 const certifications = [
@@ -455,7 +457,6 @@
             );
         };
 
-
         // --- Projects.tsx ---
         const Projects = React.forwardRef((props, ref) => {
             const [selectedProject, setSelectedProject] = useState(null);
@@ -567,7 +568,6 @@
             );
         });
 
-
         // --- Contact.tsx ---
         const Contact = React.forwardRef((props, ref) => {
             const ContactCard = ({ icon, title, children, isLink, href }) => (
@@ -596,12 +596,9 @@
                     <p className="text-lg max-w-2xl mx-auto mb-12 text-slate-400">
                         ¿Interesado en colaborar? ¡Hablemos sobre cómo puedo aportar valor a tu proyecto u organización!
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
                         <ContactCard icon="fas fa-envelope" title="Email" isLink href="mailto:carolina.torresz@udea.edu.co">
                             carolina.torresz@udea.edu.co
-                        </ContactCard>
-                        <ContactCard icon="fas fa-phone" title="Teléfono" isLink href="tel:+573165352099">
-                            +57 316 535 2099
                         </ContactCard>
                         <ContactCard icon="fas fa-map-marker-alt" title="Ubicación">
                             Envigado, Antioquia, Colombia
@@ -611,7 +608,6 @@
                         <SocialButton href="https://www.linkedin.com/in/carolinatorresz/" title="LinkedIn" icon="fab fa-linkedin-in" />
                         <SocialButton href="https://github.com/carolinatorresz" title="GitHub" icon="fab fa-github" />
                         <SocialButton href="mailto:carolina.torresz@udea.edu.co" title="Email" icon="fas fa-envelope" />
-                        <SocialButton href="https://wa.me/573165352099" title="WhatsApp" icon="fab fa-whatsapp" />
                     </div>
                 </section>
             );
@@ -622,7 +618,7 @@
             return (
                 <footer className="bg-slate-900/50 border-t border-purple-500/30 mt-16 py-8 px-4 text-center text-slate-400">
                     <p className="font-poppins font-bold text-white text-lg">Carolina Torres Zapata</p>
-                    <p className="text-sm">Consultora Líder de Analítica | Data Science & BI</p>
+                    <p className="text-sm">Data Analytics Specialist | BI & AI Solutions</p>
                     <p className="text-xs mt-4 opacity-70">&copy; {new Date().getFullYear()} Todos los derechos reservados</p>
                 </footer>
             );
