@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth;">
 <head>
@@ -39,7 +38,7 @@
         import React, { useState, useEffect, useRef } from 'react';
         import ReactDOM from 'react-dom/client';
 
-        // --- SectionTitle.tsx ---
+        // --- SectionTitle ---
         const SectionTitle = ({ children }) => (
             <div className="text-center mb-12">
                 <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold text-white inline-block relative pb-3">
@@ -49,7 +48,7 @@
             </div>
         );
 
-        // --- Header.tsx ---
+        // --- Header ---
         const Header = ({ activeSection }) => {
             const NAV_LINKS = [
                 { href: "#home", label: "Inicio", icon: <i className="fas fa-home"></i> },
@@ -82,7 +81,7 @@
             );
         };
 
-        // --- Hero.tsx ---
+        // --- Hero ---
         const Hero = React.forwardRef((props, ref) => {
             return (
                 <section id="home" ref={ref} className="flex items-center w-full px-4 min-h-[calc(100vh-4rem)] pt-16 sm:pt-0">
@@ -120,44 +119,42 @@
             );
         });
 
-        // --- About.tsx ---
-        const AboutCard = ({ icon, title, children }) => (
-            <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
-                <h3 className="flex items-center gap-4 text-2xl font-bold text-white mb-4">
-                    <i className={`${icon} text-purple-500 text-4xl flex-shrink-0`}></i> {title}
-                </h3>
-                <p className="text-slate-400">{children}</p>
-            </div>
-        );
-
-        const Card = ({ children }) => (
-            <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400 h-full">
-                {children}
-            </div>
-        );
-        
-        const SectionSubtitle = ({ children }) => (
-            <h3 className="text-2xl font-bold text-white text-center mt-12 mb-8">{children}</h3>
-        );
-        
+        // --- About ---
         const About = React.forwardRef((props, ref) => {
             const [activeTab, setActiveTab] = useState('about');
+
+            const AboutCard = ({ icon, title, children }) => (
+                <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                    <h3 className="flex items-center gap-4 text-2xl font-bold text-white mb-4">
+                        <i className={`${icon} text-purple-500 text-4xl flex-shrink-0`}></i> {title}
+                    </h3>
+                    <p className="text-slate-400">{children}</p>
+                </div>
+            );
+
+            const Card = ({ children }) => (
+                <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400 h-full">
+                    {children}
+                </div>
+            );
             
-            const AboutContent = () => {
-                return (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <AboutCard icon="fas fa-briefcase" title="Impacto en el Negocio">
-                            Soy una profesional de datos que va más allá del análisis: convierto la información en historias que impulsan decisiones inteligentes. Mi experiencia une la analítica estratégica, la automatización y el uso de herramientas modernas para generar valor real en los negocios.
-                        </AboutCard>
-                        <AboutCard icon="fas fa-laptop-code" title="Soluciones Analíticas Integrales">
-                            Mi enfoque combina visión estratégica y ejecución técnica para desarrollar productos de datos escalables, precisos y orientados al negocio. Cada proyecto busca conectar el valor analítico con resultados tangibles, impulsando eficiencia y toma de decisiones basadas en evidencia.
-                        </AboutCard>
-                        <AboutCard icon="fas fa-users" title="Liderazgo como Puente Estratégico">
-                            Mi rol como líder es ser un traductor: convierto las necesidades del negocio en estrategias técnicas y los complejos resultados analíticos en historias que inspiran acción. Fomento una cultura de curiosidad y mentoría para construir equipos de alto impacto.
-                        </AboutCard>
-                    </div>
-                );
-            };
+            const SectionSubtitle = ({ children }) => (
+                <h3 className="text-2xl font-bold text-white text-center mt-12 mb-8">{children}</h3>
+            );
+            
+            const AboutContent = () => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <AboutCard icon="fas fa-briefcase" title="Impacto en el Negocio">
+                        Soy una profesional de datos que va más allá del análisis: convierto la información en historias que impulsan decisiones inteligentes. Mi experiencia une la analítica estratégica, la automatización y el uso de herramientas modernas para generar valor real en los negocios.
+                    </AboutCard>
+                    <AboutCard icon="fas fa-laptop-code" title="Soluciones Analíticas Integrales">
+                        Mi enfoque combina visión estratégica y ejecución técnica para desarrollar productos de datos escalables, precisos y orientados al negocio. Cada proyecto busca conectar el valor analítico con resultados tangibles, impulsando eficiencia y toma de decisiones basadas en evidencia.
+                    </AboutCard>
+                    <AboutCard icon="fas fa-users" title="Liderazgo como Puente Estratégico">
+                        Mi rol como líder es ser un traductor: convierto las necesidades del negocio en estrategias técnicas y los complejos resultados analíticos en historias que inspiran acción. Fomento una cultura de curiosidad y mentoría para construir equipos de alto impacto.
+                    </AboutCard>
+                </div>
+            );
             
             const SkillsContent = () => {
                 const CardTitle = ({ icon, title }) => (
@@ -331,7 +328,7 @@
             );
         });
 
-        // --- ProjectModal.tsx ---
+        // --- ProjectModal ---
         const ProjectModal = ({ project, onClose }) => {
             const [activeTab, setActiveTab] = useState('context');
 
@@ -378,9 +375,7 @@
                      <div className="animate-fade-in-content">
                         {text.split('\n').map((line, index) => {
                             if (line.trim() === '') return <div key={index} className="h-3"></div>;
-
                             const match = Object.keys(iconMap).find(key => line.trim().startsWith(key));
-
                             if (match) {
                                 const { icon, color } = iconMap[match];
                                 const textContent = line.trim().substring(match.length).trim();
@@ -391,7 +386,6 @@
                                     </div>
                                 );
                             }
-                            
                             return <p key={index} className="text-slate-400 mb-4 text-sm leading-relaxed">{line}</p>;
                         })}
                     </div>
@@ -414,8 +408,8 @@
                             </button>
                         </div>
 
-                        <div className="flex-grow p-4 sm:p-8 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                           <div className="flex flex-col h-full">
+                        <div className="flex-grow p-4 sm:p-8 overflow-y-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                           <div className="flex flex-col h-full md:col-span-2">
                                 <div className="border-b border-purple-500/30 flex mb-6">
                                     {tabs.map(tab => (
                                         <button 
@@ -457,29 +451,18 @@
                     </div>
                     
                     <style>{`
-                        @keyframes fade-in {
-                            from { opacity: 0; }
-                            to { opacity: 1; }
-                        }
+                        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
                         .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
-                        
-                        @keyframes slide-up {
-                            from { transform: translateY(20px) scale(0.98); opacity: 0; }
-                            to { transform: translateY(0) scale(1); opacity: 1; }
-                        }
+                        @keyframes slide-up { from { transform: translateY(20px) scale(0.98); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
                         .animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
-
-                        @keyframes fade-in-content {
-                          from { opacity: 0; transform: translateY(10px); }
-                          to { opacity: 1; transform: translateY(0); }
-                        }
+                        @keyframes fade-in-content { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
                         .animate-fade-in-content { animation: fade-in-content 0.4s ease-out forwards; }
                     `}</style>
                 </div>
             );
         };
         
-        // --- Projects.tsx ---
+        // --- Projects ---
         const Projects = React.forwardRef((props, ref) => {
             const [selectedProject, setSelectedProject] = useState(null);
 
@@ -520,34 +503,31 @@
                 { title: "Modelos de Forecasting – Contact Center", icon: "fas fa-chart-line", description: "Modelo de pronóstico de llamadas mediante series de tiempo, incrementando la precisión y reduciendo los tiempos de procesamiento.", tags: [{ name: "R", icon: "fab fa-r-project" }, { name: "Python", icon: "fab fa-python" }, { name: "Time Series", icon: "fas fa-wave-square" }, { name: "Forecasting", icon: "fas fa-chart-line" }], impact: "Mayor exactitud en proyecciones y eficiencia en la asignación de recursos humanos." },
             ];
 
-            const ProjectCard = ({ project, onClick }) => {
-                const { title, icon, description, tags, impact, details } = project;
-                return (
-                    <div
-                        onClick={onClick}
-                        className={`bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 
-                            ${details ? 'hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500 cursor-pointer' : 'opacity-60 cursor-not-allowed'}`}
-                    >
-                        <div className="p-6 border-b border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 relative min-h-[8rem] flex items-center">
-                            <h3 className="text-xl font-bold text-white pr-14">{title}</h3>
-                            <div className="absolute top-4 right-4 text-4xl text-cyan-400 opacity-10"><i className={icon}></i></div>
+            const ProjectCard = ({ project, onClick }) => (
+                <div
+                    onClick={onClick}
+                    className={`bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 
+                        ${project.details ? 'hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500 cursor-pointer' : 'opacity-60 cursor-not-allowed'}`}
+                >
+                    <div className="p-6 border-b border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 relative min-h-[8rem] flex items-center">
+                        <h3 className="text-xl font-bold text-white pr-14">{project.title}</h3>
+                        <div className="absolute top-4 right-4 text-4xl text-cyan-400 opacity-10"><i className={project.icon}></i></div>
+                    </div>
+                    <div className="p-6">
+                        <p className="min-h-[6rem] text-slate-400 mb-4">{project.description}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tags.map(tag => (
+                                <span key={tag.name} className="bg-purple-500/20 text-purple-300 text-xs font-medium py-1 px-3 rounded-full flex items-center gap-1.5">
+                                    <i className={tag.icon}></i>{tag.name}
+                                </span>
+                            ))}
                         </div>
-                        <div className="p-6">
-                            <p className="min-h-[6rem] text-slate-400 mb-4">{description}</p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {tags.map(tag => (
-                                    <span key={tag.name} className="bg-purple-500/20 text-purple-300 text-xs font-medium py-1 px-3 rounded-full flex items-center gap-1.5">
-                                        <i className={tag.icon}></i>{tag.name}
-                                    </span>
-                                ))}
-                            </div>
-                            <div className="mt-4 p-3 bg-cyan-500/10 border-l-4 border-cyan-400 rounded-r-md text-sm text-cyan-200">
-                                <strong>Impacto:</strong> {impact}
-                            </div>
+                        <div className="mt-4 p-3 bg-cyan-500/10 border-l-4 border-cyan-400 rounded-r-md text-sm text-cyan-200">
+                            <strong>Impacto:</strong> {project.impact}
                         </div>
                     </div>
-                );
-            };
+                </div>
+            );
 
             return (
                 <section id="projects" ref={ref} className="py-8 sm:py-12">
@@ -566,22 +546,22 @@
             );
         });
 
-        // --- Contact.tsx ---
-        const ContactCard = ({ icon, title, children, isLink, href }) => (
-            <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
-                <div className="text-4xl mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                    <i className={icon}></i>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-                {isLink ? (
-                    <a href={href} className="text-slate-300 hover:text-cyan-400 transition-colors break-words">{children}</a>
-                ) : (
-                    <p className="text-slate-300">{children}</p>
-                )}
-            </div>
-        );
-
+        // --- Contact ---
         const Contact = React.forwardRef((props, ref) => {
+            const ContactCard = ({ icon, title, children, isLink, href }) => (
+                <div className="bg-slate-800/70 backdrop-blur-sm border border-purple-500/30 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-400">
+                    <div className="text-4xl mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                        <i className={icon}></i>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+                    {isLink ? (
+                        <a href={href} className="text-slate-300 hover:text-cyan-400 transition-colors break-words">{children}</a>
+                    ) : (
+                        <p className="text-slate-300">{children}</p>
+                    )}
+                </div>
+            );
+
             const SocialButton = ({ href, title, icon }) => (
                 <a href={href} target="_blank" rel="noopener noreferrer" title={title} className="w-16 h-16 bg-slate-800/50 border-2 border-purple-500 rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 hover:bg-gradient-to-br hover:from-purple-500 hover:to-cyan-400 hover:border-cyan-400 hover:scale-110 hover:rotate-6">
                     <i className={icon}></i>
@@ -611,7 +591,7 @@
             );
         });
         
-        // --- Footer.tsx ---
+        // --- Footer ---
         const Footer = () => {
             return (
                 <footer className="bg-slate-900/50 border-t border-purple-500/30 mt-16 py-8 px-4 text-center text-slate-400">
@@ -622,7 +602,7 @@
             );
         };
 
-        // --- App.tsx ---
+        // --- App ---
         const App = () => {
             const [activeSection, setActiveSection] = useState('home');
             const sectionRefs = {
@@ -669,12 +649,11 @@
             );
         };
 
-        // --- index.tsx ---
+        // --- Render App ---
         const rootElement = document.getElementById('root');
         if (!rootElement) {
           throw new Error("Could not find root element to mount to");
         }
-
         const root = ReactDOM.createRoot(rootElement);
         root.render(
           <React.StrictMode>
