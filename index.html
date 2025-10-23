@@ -429,7 +429,7 @@
                                     {activeTab === 'results' && <FormattedText text={details.results} />}
                                 </div>
                            </div>
-                           <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-slate-800 border border-purple-500/20 shadow-lg shadow-black/30 self-center">
+                           <div className="w-full aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-slate-800 border border-purple-500/20 shadow-lg shadow-black/30 self-center">
                                 <img src={details.image} alt={details.title} className="w-full h-full object-cover" />
                            </div>
                         </div>
@@ -451,11 +451,22 @@
                     </div>
                     
                     <style>{`
-                        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+                        @keyframes fade-in {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
+                        }
                         .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
-                        @keyframes slide-up { from { transform: translateY(20px) scale(0.98); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+                        
+                        @keyframes slide-up {
+                            from { transform: translateY(20px) scale(0.98); opacity: 0; }
+                            to { transform: translateY(0) scale(1); opacity: 1; }
+                        }
                         .animate-slide-up { animation: slide-up 0.4s ease-out forwards; }
-                        @keyframes fade-in-content { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+                        @keyframes fade-in-content {
+                          from { opacity: 0; transform: translateY(10px); }
+                          to { opacity: 1; transform: translateY(0); }
+                        }
                         .animate-fade-in-content { animation: fade-in-content 0.4s ease-out forwards; }
                     `}</style>
                 </div>
@@ -478,11 +489,25 @@
                         image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/ModaMax2.png",
                         title: "Dashboard Ejecutivo para Cadena de Moda",
                         context: "Cadena de moda crecía rápidamente, pero sus datos no acompañaban el ritmo.\nEl equipo directivo enfrentaba:\n⏱️ +20h/mes en consolidación manual en Excel.\n📉 Dificultad para identificar productos rentables.\n🔗 Desconexión entre campañas y ventas físicas.",
-                        solution: "Dashboard dinámico en Power BI, integrando todas las fuentes de datos en una sola vista.\n🔄 Integración 360°: ventas, inventario, clientes y campañas digitales.\n📊 Visualizaciones claras y filtros inteligentes para explorar datos.\n📈 Insights accionables disponibles para directivos.",
-                        results: "⏱️ -85% en tiempo de consolidación (de 20h a 40 min/mes).\n📈 El 20% de productos generaba el 75% de las ventas.\n💰 3x más clientes recurrentes vía Instagram Ads.\n🏪 Decisiones unificadas: toda la organización trabajando con los mismos datos."
+                        solution: "Dashboard dinámico en Power BI con integración total de datos.\n🔄 Integración 360°: ventas, inventario, clientes y campañas digitales.\n📊 Visualizaciones claras y filtros inteligentes para explorar datos.\n📈 Insights accionables disponibles para directivos.",
+                        results: "⏱️ -85% en tiempo de consolidación (de 20 h a 40 min/mes).\n📈 El 20 % de productos concentró el 75 % de las ventas.\n💰 3x más clientes recurrentes vía Instagram Ads.\n🏪 Decisiones unificadas con una fuente única de datos."
                     }
                 },
-                { title: "Segmentación de Clientes  Clustering", icon: "fas fa-brain", description: "Implementación de modelos no supervisados con algoritmos de clustering para segmentar clientes según comportamiento y patrones de consumo.", tags: [{ name: "Python", icon: "fab fa-python" }, { name: "Scikit-learn", icon: "fas fa-brain" }, { name: "Pandas", icon: "fas fa-table" }, { name: "Random Forest", icon: "fas fa-sitemap" }], impact: "Identificación de segmentos de alto valor para optimizar estrategias comerciales y retención." },
+                { 
+                    title: "Segmentación de Clientes  Clustering", 
+                    icon: "fas fa-brain", 
+                    description: "Implementación de modelos no supervisados con algoritmos de clustering para segmentar clientes según comportamiento y patrones de consumo.", 
+                    tags: [{ name: "Python", icon: "fab fa-python" }, { name: "Scikit-learn", icon: "fas fa-brain" }, { name: "Pandas", icon: "fas fa-table" }, { name: "Random Forest", icon: "fas fa-sitemap" }], 
+                    impact: "Identificación de segmentos de alto valor para optimizar estrategias comerciales y retención.",
+                    details: {
+                        githubLink: "https://github.com/carolinatorresz",
+                        image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=2070&auto=format&fit=crop",
+                        title: "Segmentación Estratégica de Comercios para Fintech",
+                        context: "🎯 Fintech con crecimiento acelerado y miles de comercios sin segmentar.\n📉 Estrategia comercial uniforme que generaba fugas, esfuerzos ineficientes y pérdida de oportunidades.\n🔎 Necesidad de identificar patrones y comportamientos diferenciados entre comercios.",
+                        solution: "🤖 Desarrollo de un modelo de segmentación con algoritmos de clustering (Agglomerative).\n🔄 Pipeline de análisis completo: limpieza, validación y modelado en Python.\n📊 Creación de 6 perfiles estratégicos de comercios y dashboard interactivo en Streamlit.",
+                        results: "📈 Identificación de la brecha del 84 % en adopción digital entre comercios similares.\n💰 Activación de campañas segmentadas con ROI inmediato.\n🌎 Base analítica para estrategias personalizadas y expansión comercial."
+                    }
+                },
                 { 
                     title: "Clasificación de Noticias - NLP", 
                     icon: "fas fa-language", 
@@ -493,9 +518,9 @@
                         githubLink: "https://github.com/carolinatorresz",
                         image: "https://raw.githubusercontent.com/carolinatorres-analytics/carolinatorres-analytics.github.io/refs/heads/main/Images/PLNSol1.png",
                         title: "Clasificador de Noticias para Detección de Riesgos Financieros",
-                        context: "Entidad financiera necesitaba monitorear noticias para identificar riesgos de LA/FT.\nProblemas clave:\n❌ Revisión manual de medios digitales → proceso lento y propenso a errores.\n📉 Dificultad para detectar a tiempo noticias críticas que afectaran la reputación.\n⏱️ Volumen creciente de información.",
-                        solution: "Pipeline automatizado con Python y NLP para recopilar y clasificar noticias.\n🔎 Web Scraping: captura diaria de noticias en medios digitales.\n🧹 Preprocesamiento de texto: limpieza y normalización de titulares.\n🤖 Modelo de Machine Learning (NLP): clasificación automática de noticias sobre LA/FT.",
-                        results: "🎯 Precisión superior al 85% en clasificación de noticias críticas.\n⏱️ Reducción drástica del tiempo de monitoreo: de horas manuales a análisis en minutos.\n🔐 Mitigación de riesgos reputacionales mediante detección temprana de delitos financieros.\n📊 Información lista para analistas y equipos de cumplimiento."
+                        context: "Entidad financiera con necesidad de monitorear noticias sobre riesgos LA/FT.\n❌ Revisión manual de medios digitales: proceso lento y propenso a errores.\n📉 Dificultad para detectar noticias críticas a tiempo.\n⏱️ Volumen informativo en aumento sin capacidad de análisis eficiente.",
+                        solution: "Pipeline automatizado con Python y NLP para clasificación de noticias.\n🔎 Web Scraping: captura diaria de noticias en medios digitales.\n🧹 Preprocesamiento de texto: limpieza y normalización de titulares.\n🤖 Modelo de Machine Learning (NLP): detección automática de noticias sobre riesgos LA/FT.",
+                        results: "🎯 Precisión superior al 85 % en clasificación de noticias críticas.\n⏱️ Reducción del monitoreo manual: de horas a minutos.\n🔐 Detección temprana de riesgos reputacionales y financieros.\n📊 Información lista para analistas y equipos de cumplimiento."
                     }
                 },
                 { 
@@ -517,31 +542,34 @@
                 { title: "Modelos de Forecasting – Contact Center", icon: "fas fa-chart-line", description: "Modelo de pronóstico de llamadas mediante series de tiempo, incrementando la precisión y reduciendo los tiempos de procesamiento.", tags: [{ name: "R", icon: "fab fa-r-project" }, { name: "Python", icon: "fab fa-python" }, { name: "Time Series", icon: "fas fa-wave-square" }, { name: "Forecasting", icon: "fas fa-chart-line" }], impact: "Mayor exactitud en proyecciones y eficiencia en la asignación de recursos humanos." },
             ];
 
-            const ProjectCard = ({ project, onClick }) => (
-                <div
-                    onClick={onClick}
-                    className={`bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 
-                        ${project.details ? 'hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500 cursor-pointer' : 'opacity-60 cursor-not-allowed'}`}
-                >
-                    <div className="p-6 border-b border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 relative min-h-[8rem] flex items-center">
-                        <h3 className="text-xl font-bold text-white pr-14">{project.title}</h3>
-                        <div className="absolute top-4 right-4 text-4xl text-cyan-400 opacity-10"><i className={project.icon}></i></div>
-                    </div>
-                    <div className="p-6">
-                        <p className="min-h-[6rem] text-slate-400 mb-4">{project.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tags.map(tag => (
-                                <span key={tag.name} className="bg-purple-500/20 text-purple-300 text-xs font-medium py-1 px-3 rounded-full flex items-center gap-1.5">
-                                    <i className={tag.icon}></i>{tag.name}
-                                </span>
-                            ))}
+            const ProjectCard = ({ project, onClick }) => {
+                const { title, icon, description, tags, impact, details } = project;
+                return (
+                    <div
+                        onClick={onClick}
+                        className={`bg-slate-800/50 border border-purple-500/30 rounded-xl overflow-hidden transition-all duration-300 
+                            ${details ? 'hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-500 cursor-pointer' : 'opacity-60 cursor-not-allowed'}`}
+                    >
+                        <div className="p-6 border-b border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 relative min-h-[8rem] flex items-center">
+                            <h3 className="text-xl font-bold text-white pr-14">{title}</h3>
+                            <div className="absolute top-4 right-4 text-4xl text-cyan-400 opacity-10"><i className={icon}></i></div>
                         </div>
-                        <div className="mt-4 p-3 bg-cyan-500/10 border-l-4 border-cyan-400 rounded-r-md text-sm text-cyan-200">
-                            <strong>Impacto:</strong> {project.impact}
+                        <div className="p-6">
+                            <p className="min-h-[6rem] text-slate-400 mb-4">{description}</p>
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                {tags.map(tag => (
+                                    <span key={tag.name} className="bg-purple-500/20 text-purple-300 text-xs font-medium py-1 px-3 rounded-full flex items-center gap-1.5">
+                                        <i className={tag.icon}></i>{tag.name}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="mt-4 p-3 bg-cyan-500/10 border-l-4 border-cyan-400 rounded-r-md text-sm text-cyan-200">
+                                <strong>Impacto:</strong> {impact}
+                            </div>
                         </div>
                     </div>
-                </div>
-            );
+                );
+            };
 
             return (
                 <section id="projects" ref={ref} className="py-8 sm:py-12">
@@ -663,17 +691,9 @@
             );
         };
 
-        // --- Render App ---
         const rootElement = document.getElementById('root');
-        if (!rootElement) {
-          throw new Error("Could not find root element to mount to");
-        }
         const root = ReactDOM.createRoot(rootElement);
-        root.render(
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        );
+        root.render(<App />);
     </script>
 <script type="module" src="/index.tsx"></script>
 </body>
